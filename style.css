@@ -1,0 +1,59 @@
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+}
+
+.logo {
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-control-lg{
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 30px;
+  background: #e7e7e7;
+  border: none;
+  /* color: rgba(0, 0, 0, 0.25); */
+  font-size: 18px;
+  position: relative;
+}
+
+.search{
+  position: absolute;
+  right: 100px;
+  width: 32px;
+  cursor: pointer;
+}
+
+.dropdown {
+  margin: 30px;
+}
+
+.notif{
+  margin-left: 30px;
+}
+
+.btn-primary {
+  background: #3282F7;
+  font-size: 18px;
+}
+
+.btn-success {
+  background: #6BD9A4;
+  font-size: 18px;
+}
+
+.btn-danger {
+  background: #ED6454;
+  font-size: 18px;
+}
+
+.dropdown a{
+  border: none;
+}
