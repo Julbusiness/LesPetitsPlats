@@ -14,13 +14,13 @@
 
   <!-- Bootstrap CSS -->
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
 
 
 
-  <title>Hello, world!</title>
+  <title>Les petits plats</title>
 
 </head>
 
@@ -31,58 +31,146 @@
   </header>
   <!-- ----------------------------------------------------------------------- -->
   <main>
-  <!-- ------------------- bar de recherche + logo search -------------------- -->
+    <!-- ------------------- bar de recherche + logo search -------------------- -->
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control-lg" type="search" placeholder="Rechercher une recette" aria-label="Search">
+      <input class="form-control-lg" id="search-input" type="search" placeholder="Rechercher une recette"
+        aria-label="Search">
       <img src="logo/Vector.png" alt="search icon" class="search">
     </form>
-  <!-- ----------------------------------------------------------------------- -->
-  <!-- ---------------------- button dropdown multiples ---------------------- -->
-  <section class="btn-group">
-    <div class="dropdown">
-      <a class="btn btn-primary btn-lg dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Ingredients
-      </a>
-    
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
-      </ul>
-    </div>
-    <div class="dropdown">
-      <a class="btn btn-success btn-lg dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Appareils
-      </a>
-    
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
-      </ul>
-    </div>
-    <div class="dropdown">
-      <a class="btn btn-danger btn-lg dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Ustensiles
-      </a>
-    
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
-      </ul>
-    </div>
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- ---------------------- button dropdown multiples ---------------------- -->
+    <section class="btn-group">
+
+      <div class="dropdown">
+        <input class="form-control form-control-lg" id="ingredients-search" type="text" placeholder="Ingrédients"
+          aria-label="Ingredients search">
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="white"
+            class="bi bi-chevron-down" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </span>
+      </div>
+
+      <div class="dropdown">
+        <input class="form-control form-control-lg btn-green" id="appareils-search" type="text" placeholder="Appareils"
+          aria-label="Appareils search">
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="white"
+            class="bi bi-chevron-down" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </span>
+      </div>
+
+      <div class="dropdown">
+        <input class="form-control form-control-lg btn-red" id="ustensiles-search" type="text" placeholder="Ustensiles"
+          aria-label="Ustensiles search">
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="white"
+            class="bi bi-chevron-down" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </span>
+      </div>
 
 
-  </section>
-  <!-- ----------------------------------------------------------------------- -->
-  <!-- ---------------------------- section tags ----------------------------- -->
-    <section class="tags">
+    </section>
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- ---------------------------- section tags ----------------------------- -->
+    <!-- <section class="tags">
       <button type="button" class="btn btn-primary notif">
         Notifications <span class="badge text-bg-secondary">x</span>
       </button>
+    </section> -->
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- ---------------------------- section cards ---------------------------- -->
+    <section class="cards">
+      <div class="card">
+        <img src="" class="card-img-top" alt="">
+        <div class="detail">
+          <div class="card-body">
+            <h3 class="card-text">Limonade de Coco</h3>
+            <ul class="list-group">
+              <li class="list-group-item"><b>Lait de coco:</b> 400ml</li>
+              <li class="list-group-item"><b>Jus de citron:</b> 2</li>
+              <li class="list-group-item"><b>Crème de coco:</b> 4 cuillères</li>
+              <li class="list-group-item"><b>Sucre:</b> 20g</li>
+              <li class="list-group-item"><b>Glaçons:</b> 2</li>
+            </ul>
+          </div>
+          <div class="time">
+            <div class="delay">
+              <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-clock" viewBox="0 0 16 16">
+                  <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+                </svg></span>
+              <p class="timing">10 min</p>
+            </div>
+            <p class="explain">Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le
+              jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <img src="" class="card-img-top" alt="">
+        <div class="detail">
+          <div class="card-body">
+            <h3 class="card-text">Limonade de Coco</h3>
+            <ul class="list-group">
+              <li class="list-group-item"><b>Lait de coco:</b> 400ml</li>
+              <li class="list-group-item"><b>Jus de citron:</b> 2</li>
+              <li class="list-group-item"><b>Crème de coco:</b> 4 cuillères</li>
+              <li class="list-group-item"><b>Sucre:</b> 20g</li>
+              <li class="list-group-item"><b>Glaçons:</b> 2</li>
+            </ul>
+          </div>
+          <div class="time">
+            <div class="delay">
+              <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-clock" viewBox="0 0 16 16">
+                  <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+                </svg></span>
+              <p class="timing">10 min</p>
+            </div>
+            <p class="explain">Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le
+              jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <img src="" class="card-img-top" alt="">
+        <div class="detail">
+          <div class="card-body">
+            <h3 class="card-text">Limonade de Coco</h3>
+            <ul class="list-group">
+              <li class="list-group-item"><b>Lait de coco:</b> 400ml</li>
+              <li class="list-group-item"><b>Jus de citron:</b> 2</li>
+              <li class="list-group-item"><b>Crème de coco:</b> 4 cuillères</li>
+              <li class="list-group-item"><b>Sucre:</b> 20g</li>
+              <li class="list-group-item"><b>Glaçons:</b> 2</li>
+            </ul>
+          </div>
+          <div class="time">
+            <div class="delay">
+              <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-clock" viewBox="0 0 16 16">
+                  <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+                </svg></span>
+              <p class="timing">10 min</p>
+            </div>
+            <p class="explain">Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le
+              jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.</p>
+          </div>
+        </div>
+      </div>
     </section>
-  <!-- ----------------------------------------------------------------------- -->
   </main>
 
 
@@ -99,7 +187,7 @@
     integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
     crossorigin="anonymous"></script>
 
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
 
