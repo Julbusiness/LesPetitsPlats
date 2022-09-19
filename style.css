@@ -286,14 +286,14 @@ header {
 .bloc-links li,
 .bloc-links2 li,
 .bloc-links3 li {
-	width: 100px;
+	width: 200px;
 	list-style-type: none;
-	margin-right: 120px;
 	font-size: 18px;
 	color: #f1f1f1;
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
+	padding: 10px 0;
 }
 
 .bloc-links li:last-child,
@@ -308,7 +308,9 @@ header {
 	display: flex;
 	width: 100%;
 	max-width: 667px;
-	max-height: 397px;
-	flex-direction: column;
+	max-height: 390px;
+	flex-direction: raw;
 	flex-wrap: wrap;
+	padding-left: 20px;
+	overflow: auto;
 }

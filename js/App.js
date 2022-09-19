@@ -1,6 +1,9 @@
 class App {
 	constructor() {
 		this.$recipesWrapper = document.querySelector(".cards");
+		this.$ingredientsWrapper = document.querySelector(".tags");
+		this.$appareilsWrapper = document.querySelector(".bloc-links2");
+		this.$ustensilesWrapper = document.querySelector(".bloc-links3");
     this.dataApi = new Api("/data/recipes.json");
 	}
   
@@ -17,7 +20,21 @@ class App {
 			});
 	}
 	/* -------------------------------------------------------------------------- */
+	/* ---------- fetch des données recettes pour la création du tag Ingredients --------- */
+	async fetchIngredients() {
+		const IngredientsData = await this.dataApi.getIngredients();
+		// console.log(IngredientsData)
+
+		IngredientsData
+			.forEach((ingredients) => {
+				// console.log(typeof recipe)
+				const Template = new Ingredients(ingredients);
+				// console.log(Ingredients)
+				this.$ingredientsWrapper.appendChild(Template.createIngredients());
+			});
+	}
 }
 
 const app = new App();
 app.fetchRecipes();
+app.fetchIngredients();
