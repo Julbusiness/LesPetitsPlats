@@ -2,8 +2,8 @@ class App {
 	constructor() {
 		this.$recipesWrapper = document.querySelector(".cards");
 		this.$ingredientsWrapper = document.querySelector(".tags");
-		this.$appareilsWrapper = document.querySelector(".bloc-links2");
-		this.$ustensilesWrapper = document.querySelector(".bloc-links3");
+		this.$appareilsWrapper = document.querySelector(".tags2");
+		this.$ustensilesWrapper = document.querySelector(".tags3");
     this.dataApi = new Api("/data/recipes.json");
 	}
   
@@ -33,8 +33,32 @@ class App {
 				this.$ingredientsWrapper.appendChild(Template.createIngredients());
 			});
 	}
+	/* -------------------------------------------------------------------------- */
+	/* ---------- fetch des données recettes pour la création du tag Appareils --------- */
+	async fetchAppareils() {
+		const AppareilsData = await this.dataApi.getAppareils();
+
+		AppareilsData
+			.forEach((appareils) => {
+				const Template = new Appareils(appareils);
+				this.$appareilsWrapper.appendChild(Template.createAppareils());
+			});
+	}
+	/* -------------------------------------------------------------------------- */
+	/* ---------- fetch des données recettes pour la création du tag Ustensiles --------- */
+	async fetchUstensiles() {
+		const UstensilesData = await this.dataApi.getUstensiles();
+
+		UstensilesData
+			.forEach((ustensiles) => {
+				const Template = new Ustensiles(ustensiles);
+				this.$ustensilesWrapper.appendChild(Template.createUstensiles());
+			});
+	}
 }
 
 const app = new App();
 app.fetchRecipes();
 app.fetchIngredients();
+app.fetchAppareils();
+app.fetchUstensiles();

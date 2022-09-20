@@ -7,18 +7,13 @@
   <!-- Required meta tags -->
 
   <meta charset="utf-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-
 
   <!-- Bootstrap CSS -->
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
-
-
 
   <title>Les petits plats</title>
 
@@ -27,7 +22,7 @@
 <body>
   <!-- ---------------------------- header + logo ---------------------------- -->
   <header>
-    <img src="logo/logo.png" alt="logo" class="logo">
+    <img src="Assets/logo.png" alt="logo" class="logo">
   </header>
   <!-- ----------------------------------------------------------------------- -->
   <main>
@@ -35,53 +30,53 @@
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control-lg" id="search-input" type="search" placeholder="Rechercher une recette"
         aria-label="Search">
-      <img src="logo/Vector.png" alt="search icon" class="search">
+      <img src="Assets/Vector.png" alt="search icon" class="search">
     </form>
     <!-- ----------------------------------------------------------------------- -->
     <!-- ---------------------- button dropdown multiples ---------------------- -->
     <section class="btn-group">
 
       <div class="ingredients">
-        <button class="btn-top form-control" id="ingredients-search" placeholder="Recherche un ingrédient">
-            <span class="short-title-ingredients">Ingrédients</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="white"
-            class="bi bi-chevron-down" viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-          </svg>
-        </button>
-        <div class="bloc-links">
-            <ul class="tags"></ul>
+        <input type="text" class="btn-top form-control short-title-ingredients" id="ingredients-search"
+          placeholder="Ingrédients">
+        </input>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="white"
+          class="bi bi-chevron-down drop-btn-ingredients" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+        </svg>
+        <div class="blocLinks-ingredients">
+          <ul class="tags"></ul>
         </div>
-    </div>
-    <!-- ----------------------------------------------------------------------- -->
+      </div>
+      <!-- ----------------------------------------------------------------------- -->
       <div class="appareils">
-        <button class="btn-top2 form-control" id="appareils-search" placeholder="Recherche un appareil">
-            <span class="short-title-appareils">Appareils</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="white"
-            class="bi bi-chevron-down" viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-          </svg>
-        </button>
-        <div class="bloc-links2">
-            <ul class="tags2"></ul>
+        <input type="text" class="btn-top form-control short-title-appareils" id="appareils-search"
+          placeholder="Appareils">
+        </input>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="white"
+          class="bi bi-chevron-down drop-btn-appareils" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+        </svg>
+        <div class="blocLinks-appareils">
+          <ul class="tags2"></ul>
         </div>
-    </div>
-    <!-- ----------------------------------------------------------------------- -->
+      </div>
+      <!-- ----------------------------------------------------------------------- -->
       <div class="ustensiles">
-        <button class="btn-top3 form-control" id="ustensiles-search" placeholder="Recherche un ustencile">
-            <span class="short-title-ustensiles">Ustensiles</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="white"
-            class="bi bi-chevron-down" viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-          </svg>
-        </button>
-        <div class="bloc-links3">
-            <ul class="tags3"></ul>
+        <input type="text" class="btn-top form-control short-title-ustensiles" id="ustensiles-search"
+          placeholder="Ustensiles">
+        </input>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="white"
+          class="bi bi-chevron-down drop-btn-ustensiles" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+        </svg>
+        <div class="blocLinks-ustensiles">
+          <ul class="tags3"></ul>
         </div>
-    </div>
+      </div>
 
     </section>
     <!-- ----------------------------------------------------------------------- -->
@@ -94,7 +89,7 @@
     <!-- ----------------------------------------------------------------------- -->
     <!-- ---------------------------- section cards ---------------------------- -->
     <section class="cards"></section>
-    
+
   </main>
 
 
@@ -117,9 +112,11 @@
 
   <script src="./js/Api/Api.js"></script>
   <script src="./js/Models/Recipe.js"></script>
-  <script src="./js/Template/Card.js"></script>
-  <script src="./js/Template/TagsSearch.js"></script>
-  <script src="./js/Template/Ingredients.js"></script>
+  <script src="./js/Template/Cards/Card.js"></script>
+  <script src="./js/Template/Tags/TagsSearch.js"></script>
+  <script src="./js/Template/Tags/Ingredients.js"></script>
+  <script src="./js/Template/Tags/Appareils.js"></script>
+  <script src="./js/Template/Tags/Ustensiles.js"></script>
   <script src="./js/App.js"></script>
 
 </body>

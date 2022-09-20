@@ -92,6 +92,7 @@ header {
 	justify-content: center;
 	align-items: center;
 	border-radius: 5px;
+	position: relative;
 }
 
 .form-control::placeholder {
@@ -101,6 +102,10 @@ header {
 .bi-chevron-down {
 	width: 16px;
 	margin-left: 20px;
+	position: absolute;
+	top: 25px;
+	right: 10px;
+	cursor: pointer;
 }
 
 .cards {
@@ -203,6 +208,7 @@ header {
 .appareils,
 .ustensiles {
 	width: 170px;
+	height: 69px;
 	max-width: 667px;
 	border-radius: 5px;
 	overflow: hidden;
@@ -220,9 +226,7 @@ header {
 	background: #ed6454;
 }
 
-.btn-top,
-.btn-top2,
-.btn-top3 {
+.btn-top {
 	padding: 20px;
 	width: 100%;
 	border: none;
@@ -268,24 +272,22 @@ header {
 	background: #ed6354d8;
 }
 
-.open svg,
-.open2 svg,
-.open3 svg {
+.open-svg {
 	width: 16px;
 	rotate: 180deg;
 }
 
-.bloc-links,
-.bloc-links2,
-.bloc-links3 {
+.blocLinks-ingredients,
+.blocLinks-appareils,
+.blocLinks-ustensiles {
 	padding: 0px;
 	transition: height 0.2s ease-in-out;
 	height: 0;
 }
 
-.bloc-links li,
-.bloc-links2 li,
-.bloc-links3 li {
+.blocLinks-ingredients li,
+.blocLinks-appareils li,
+.blocLinks-ustensiles li {
 	width: 200px;
 	list-style-type: none;
 	font-size: 18px;
@@ -293,13 +295,7 @@ header {
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
-	padding: 10px 0;
-}
-
-.bloc-links li:last-child,
-.bloc-links2 li:last-child,
-.bloc-links3 li:last-child {
-	padding-bottom: 25px;
+	margin: 10px 10px 10px 0;
 }
 
 .tags,
@@ -313,4 +309,14 @@ header {
 	flex-wrap: wrap;
 	padding-left: 20px;
 	overflow: auto;
+}
+
+.list-item-ingredients,
+.list-item-appareils,
+.list-item-ustensiles {
+	background: none;
+	border: none;
+	font-size: 12px;
+	height: 100%;
+	line-height: 12px;
 }

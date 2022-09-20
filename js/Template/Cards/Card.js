@@ -15,7 +15,7 @@ class Card {
     
 		const recipeCard = `
     
-    <img src="../../logo/img.png" class="card-img-top" alt="">
+    <img src="../../Assets/img.png" class="card-img-top" alt="">
     <div class="detail">
       <div class="card-body">
       <h3 class="card-text">${this._recipe.name}</h3>
