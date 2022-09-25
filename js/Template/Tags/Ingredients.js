@@ -9,5 +9,6 @@ class Ingredients {
 			newLi.classList.add("list-item-ingredients");
 			newLi.innerText = this._ingredients;
 			return newLi;
-	}
+		}
+
 }

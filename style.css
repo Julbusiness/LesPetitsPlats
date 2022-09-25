@@ -319,4 +319,47 @@ header {
 	font-size: 12px;
 	height: 100%;
 	line-height: 12px;
+	cursor: pointer;
+}
+
+.tags-card {
+	max-width: 1240px;
+	margin: 20px auto 0;
+	/* display: none; */
+}
+
+.tags-card-ul {
+	padding-left: 0;
+	margin-bottom: 0;
+}
+
+.notif {
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.close {
+	border: 2px solid #fff;
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+	margin-left: 15px;
+	margin-top: 4px;
+	background: transparent;
+}
+
+.fa-solid .fa-xmark {
+	color: #fff;
+}
+
+.btn-primary {
+	background: #3282f7;
+}
+
+.btn-success {
+	background: #6bd9a4;
+}
+
+.btn-danger {
+	background: #ed6454;
 }

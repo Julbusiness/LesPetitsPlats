@@ -152,6 +152,24 @@ function toggleDropDownUstensiles() {
 	toggleIndexUstensiles = false;
 }
 
-liItemsIngredients.forEach((li) =>	li.addEventListener("click", toggleDropDownIngredients));
-liItemsAppareils.forEach((li) => li.addEventListener("click", toggleDropDownAppareils));
-liItemsUstensiles.forEach((li) => li.addEventListener("click", toggleDropDownUstensiles));
+function createTags(tag, color) {
+			let tagsWrapper = document.querySelector(".tags-card-ul")
+
+			let tagsLi = document.createElement("li")
+			tagsLi.classList.add("btn")
+			tagsLi.classList.add(`btn-${color}`)
+			tagsLi.classList.add("notif")
+			tagsLi.innerHTML = tag
+			
+			let spanClose = document.createElement("span")
+			spanClose.classList.add('close')
+
+			let tagsClose = document.createElement("i") // ne fonctionne pas 
+			tagsClose.classList.add("fa-regular")
+			tagsClose.classList.add("fa-xmark")
+
+			tagsWrapper.appendChild(tagsLi)
+			tagsLi.appendChild(spanClose)
+			tagsLi.appendChild(tagsClose)
+			console.log(tagsLi)
+		};
