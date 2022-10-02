@@ -161,15 +161,11 @@ function createTags(tag, color) {
 			tagsLi.classList.add("notif")
 			tagsLi.innerHTML = tag
 			
-			let spanClose = document.createElement("span")
-			spanClose.classList.add('close')
+			let imgClose = document.createElement("img")
+			imgClose.src = "../../../Assets/close.png"
+			imgClose.classList.add('close')
 
-			let tagsClose = document.createElement("i") // ne fonctionne pas 
-			tagsClose.classList.add("fa-regular")
-			tagsClose.classList.add("fa-xmark")
 
 			tagsWrapper.appendChild(tagsLi)
-			tagsLi.appendChild(spanClose)
-			tagsLi.appendChild(tagsClose)
-			console.log(tagsLi)
+			tagsLi.appendChild(imgClose)
 		};

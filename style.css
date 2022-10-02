@@ -345,21 +345,39 @@ header {
 	height: 20px;
 	margin-left: 15px;
 	margin-top: 4px;
-	background: transparent;
+	color: #fff;
 }
 
-.fa-solid .fa-xmark {
-	color: #fff;
+.fa-sharp .fa-solid .fa-xmark {
+	width: 10px;
+	height: 10px;
+	color: black;
+	font-size: 12px;
 }
 
 .btn-primary {
 	background: #3282f7;
+	border: none
+}
+
+.btn-primary:hover {
+	background: #3281f7d5;
 }
 
 .btn-success {
 	background: #6bd9a4;
+	border: none
+}
+
+.btn-success:hover {
+	background: #6bd9a4d5;
 }
 
 .btn-danger {
 	background: #ed6454;
+	border: none
+}
+
+.btn-danger:hover {
+	background: #ed6354d8;
 }

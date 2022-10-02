@@ -6,12 +6,13 @@ class App {
 		this.$appareilsWrapper = document.querySelector(".tags2");
 		this.$ustensilesWrapper = document.querySelector(".tags3");
 		this.dataApi = new Api("/data/recipes.json");
+		this.recipes = this.dataApi.getRecipes();
 	}
 
 	/* ---------- fetch des données recettes pour la création des cards --------- */
 	async fetchRecipes() {
 		// console.log('je suis ici')
-		const recipesData = await this.dataApi.getRecipes();
+		const recipesData = await this.recipes;
 
 		recipesData
 			.map((recipe) => new Recipe(recipe))
@@ -85,6 +86,7 @@ class App {
 			})
 		);
 	}
+	/* -------------------------------------------------------------------------- */
 }
 
 const app = new App();
