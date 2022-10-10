@@ -33,14 +33,20 @@ class App {
 		});
 
 		let tags = document.querySelectorAll(".list-item-ingredients");
-		tags.forEach((li) =>
-			li.addEventListener("click", toggleDropDownIngredients)
-		);
+		// console.log(tags)
+
 		tags.forEach((li) =>
 			li.addEventListener("click", () => {
-				let tag = li.innerHTML;
+				toggleDropDownIngredients();
+			})
+		);
+
+		tags.forEach((li) =>
+			li.addEventListener("click", () => {
+				const tag = li.innerHTML;
 				const color = "primary";
-				createTags(tag, color);
+				const liItem = li;
+				createTag(tag, color, liItem);
 			})
 		);
 	}
@@ -58,9 +64,10 @@ class App {
 		tags.forEach((li) => li.addEventListener("click", toggleDropDownAppareils));
 		tags.forEach((li) =>
 			li.addEventListener("click", () => {
-				let tag = li.innerHTML;
+				const tag = li.innerHTML;
 				const color = "success";
-				createTags(tag, color);
+				const liItem = li;
+				createTag(tag, color, liItem);
 			})
 		);
 	}
@@ -82,7 +89,8 @@ class App {
 			li.addEventListener("click", () => {
 				let tag = li.innerHTML;
 				const color = "danger";
-				createTags(tag, color);
+				const liItem = li;
+				createTag(tag, color, liItem);
 			})
 		);
 	}
