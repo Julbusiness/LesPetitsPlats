@@ -24,23 +24,29 @@ class App {
 	/* -------------------------------------------------------------------------- */
 	/* ---------- fetch des données recettes pour la création du tag Ingredients --------- */
 	async fetchIngredients() {
+		// je recupere mes données ingredients
 		const IngredientsData = await this.dataApi.getIngredients();
-		// console.log(IngredientsData)
 
+		// je met mon listener sur l'input pour les ingredients
+		const searchInput = document.querySelector("#search-input");
+		searchInput.addEventListener("input", filterRecipes);
+
+		// je boucle sur mon tableau pour créer mes cartes d'ingredients
 		IngredientsData.forEach((ingredients) => {
 			const Template = new Ingredients(ingredients);
 			this.$ingredientsWrapper.appendChild(Template.createIngredients());
 		});
 
-		let tags = document.querySelectorAll(".list-item-ingredients");
-		// console.log(tags)
+		let tags = document.querySelectorAll(".tags-item-ingredients");
 
+		// je met mon listener sur le click du bouton ingredients
 		tags.forEach((li) =>
 			li.addEventListener("click", () => {
 				toggleDropDownIngredients();
 			})
 		);
 
+		// je met mon listener sur mon le clicks des tags pour créer mes mini cartes ingredients
 		tags.forEach((li) =>
 			li.addEventListener("click", () => {
 				const tag = li.innerHTML;
@@ -60,7 +66,7 @@ class App {
 			this.$appareilsWrapper.appendChild(Template.createAppareils());
 		});
 
-		let tags = document.querySelectorAll(".list-item-appareils");
+		let tags = document.querySelectorAll(".tags-item-appareils");
 		tags.forEach((li) => li.addEventListener("click", toggleDropDownAppareils));
 		tags.forEach((li) =>
 			li.addEventListener("click", () => {
@@ -81,7 +87,7 @@ class App {
 			this.$ustensilesWrapper.appendChild(Template.createUstensiles());
 		});
 
-		let tags = document.querySelectorAll(".list-item-ustensiles");
+		let tags = document.querySelectorAll(".tags-item-ustensiles");
 		tags.forEach((li) =>
 			li.addEventListener("click", toggleDropDownUstensiles)
 		);
@@ -94,6 +100,9 @@ class App {
 			})
 		);
 	}
+	/* -------------------------------------------------------------------------- */
+	/* -------------------------- recherche principale -------------------------- */
+	
 	/* -------------------------------------------------------------------------- */
 }
 

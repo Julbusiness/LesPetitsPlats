@@ -5,7 +5,7 @@ class Ustensiles {
 
 	createUstensiles() {
 		let newLi = document.createElement("li");
-		newLi.classList.add("list-item-ustensiles");
+		newLi.classList.add("tags-item-ustensiles");
 		newLi.innerText = this.ustensiles;
 		return newLi;
 	}

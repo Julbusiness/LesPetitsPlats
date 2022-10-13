@@ -39,7 +39,6 @@ class Card {
 		/* -------------------------------------------------------------------------- */
 		$wrapper.innerHTML = recipeCard;
 		const ul = $wrapper.querySelector('.list-group');
-		// console.log(ul);
 
 		for (const ingredient of ingredients) {
       

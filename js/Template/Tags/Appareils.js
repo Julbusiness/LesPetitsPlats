@@ -5,7 +5,7 @@ class Appareils {
 
 	createAppareils() {
 		let newLi = document.createElement("li");
-		newLi.classList.add("list-item-appareils");
+		newLi.classList.add("tags-item-appareils");
 		newLi.innerText = this.appareils;
 		return newLi;
 	}

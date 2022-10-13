@@ -1,24 +1,19 @@
-const searchInput = document.querySelector("#search-input");
 const searchResult = document.querySelector(".cards");
 
 // je crée une variable pour mon array
-let dataArray;
+let recipes;
 
 // je déclenche un nouveau fetch des données
 async function getRecipes() {
-	const res = await fetch("/data/recipes.json");
-
-	const results = await res.json();
-	// console.log(results);
-
-	dataArray = results.recipes;
-	// console.log(dataArray);
+	const responseApi = await fetch("/data/recipes.json");
+	const responseJSON = await responseApi.json();
+	recipes = responseJSON.recipes;
 }
 
-// j'appel getUsers
+// j'appel getRecipes
 getRecipes();
 
-// je crée la structure de ma nouveau carte
+// je crée la structure de ma nouvelle carte
 function createRecipeList(RecipeList) {
 	RecipeList.forEach((recipe) => {
 		const listItem = document.createElement("div");
@@ -71,29 +66,60 @@ function createRecipeList(RecipeList) {
 	});
 }
 
-// je place mon listener sur l'input
-searchInput.addEventListener("input", filterData);
-
 // je crée ma fonction de filtres des données
-function filterData(e) {
-	console.log(e);
-
-	
+function filterRecipes(e) {
 	const searchedString = e.target.value.toLowerCase();
-	
+	// console.log(searchedString);
+
+	// si le nombre de caractère tapé est strictement superieur à 2 alors j'applique le filtre
 	if (searchedString.length > 2) {
-		
 		// Je vide mon content qui contient les cards
 		searchResult.innerHTML = "";
 
-		const filteredArr = dataArray.filter(
-			(el) => el.name.toLowerCase().includes(searchedString) 
-			|| el.appliance.toLowerCase().includes(searchedString) 
-			// || el.ustensils.toLowerCase().includes(searchedString) 
-			// || el.ingredients.ingredient.toLowerCase().includes(searchedString) 
+		// j'applique la recherche : au titre de la recette, à la description et aux ingrédients
+		const filteredArr = recipes.filter(
+			(el) =>
+				el.name.toLowerCase().includes(searchedString) ||
+				el.description.toLowerCase().includes(searchedString) ||
+				el.ingredients.forEach((ingredient) => {
+					ingredient.ingredient.toLowerCase().includes(searchedString);
+				})
 		);
+
+		// Dans ce cas si il y a des resultats, j'applique mon filtre et je crée les cartes qui correpondent
 		createRecipeList(filteredArr);
+
+		// je selectionne l'ul des tags et je vide le contenu
+		const ulTags = document.querySelector(".tags");
+		ulTags.innerHTML = "";
+
+		async function getIngredients() {
+			const ingredientsList = [];
+
+			filteredArr.forEach((recipe) => {
+				recipe.ingredients.forEach((ingredient) => {
+					const found = ingredientsList.find(
+						(ingredientAlreadyCheck) =>
+							ingredientAlreadyCheck === ingredient.ingredient
+					);
+
+					if (found === undefined) {
+						ingredientsList.push(ingredient.ingredient);
+					}
+				});
+			});
+
+			ingredientsList.sort();
+			console.log(ingredientsList);
+
+			ingredientsList.forEach((ingredient) => {
+				const currentIngredients = new Ingredients(ingredient);
+				ulTags.appendChild(currentIngredients.createIngredients());
+			});
+		}
+		getIngredients();
 	} else {
-		createRecipeList(dataArray)
+		// sinon je réapplique les cartes de bases
+		createRecipeList(recipes);
 	}
 }
