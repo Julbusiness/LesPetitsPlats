@@ -302,7 +302,7 @@ header {
 .blocLinks-ustensiles {
 	padding: 0px;
 	transition: height 0.2s ease-in-out;
-	height: 0;
+	/* height: 0; */
 }
 
 .blocLinks-ingredients li,

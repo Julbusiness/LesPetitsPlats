@@ -34,8 +34,8 @@ dropBtnUstensiles.addEventListener("click", toggleDropDownUstensiles);
 
 function toggleDropDownIngredients() {
 	if (!toggleIndexIngredients) {
-		dropdownIngredients.style.height = `${blocLinksIngredients.scrollHeight}px`;
-		blocLinksIngredients.style.height = `${blocLinksIngredients.scrollHeight}px`;
+		dropdownIngredients.style.height = "390px";
+		blocLinksIngredients.style.height = "390px";
 		dropdownIngredients.style.width = "100%";
 		shortTitleIngredients.setAttribute(
 			"placeholder",
@@ -77,8 +77,8 @@ function toggleDropDownIngredients() {
 
 function toggleDropDownAppareils() {
 	if (!toggleIndexAppareils) {
-		dropdownAppareils.style.height = `${blocLinksAppareils.scrollHeight}px`;
-		blocLinksAppareils.style.height = `${blocLinksAppareils.scrollHeight}px`;
+		dropdownAppareils.style.height = "390px";
+		blocLinksAppareils.style.height = "390px";
 		dropdownAppareils.style.width = "100%";
 		shortTitleAppareils.setAttribute("placeholder", "Rechercher un appareil");
 		shortTitleAppareils.style.opacity = "50%";
@@ -117,8 +117,8 @@ function toggleDropDownAppareils() {
 
 function toggleDropDownUstensiles() {
 	if (!toggleIndexUstensiles) {
-		dropdownUstensiles.style.height = `${blocLinksUstensiles.scrollHeight}px`;
-		blocLinksUstensiles.style.height = `${blocLinksUstensiles.scrollHeight}px`;
+		dropdownUstensiles.style.height = "390px";
+		blocLinksUstensiles.style.height = "390px";
 		dropdownUstensiles.style.width = "100%";
 		shortTitleUstensiles.setAttribute("placeholder", "Rechercher un ustensile");
 		shortTitleUstensiles.style.opacity = "50%";

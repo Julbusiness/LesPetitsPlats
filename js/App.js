@@ -27,10 +27,6 @@ class App {
 		// je recupere mes données ingredients
 		const IngredientsData = await this.dataApi.getIngredients();
 
-		// je met mon listener sur l'input pour les ingredients
-		const searchInput = document.querySelector("#search-input");
-		searchInput.addEventListener("input", filterRecipes);
-
 		// je boucle sur mon tableau pour créer mes cartes d'ingredients
 		IngredientsData.forEach((ingredients) => {
 			const Template = new Ingredients(ingredients);
@@ -102,7 +98,24 @@ class App {
 	}
 	/* -------------------------------------------------------------------------- */
 	/* -------------------------- recherche principale -------------------------- */
-	
+	async mainSearch() {
+		// je met mon listener sur l'input pour les ingredients
+		const searchInput = document.querySelector("#search-input");
+		searchInput.addEventListener("input", filterRecipes);
+	}
+	/* -------------------------------------------------------------------------- */
+	/* ------------------------ recherche par ingrédients ----------------------- */
+	async IngredientsSearch() {
+		// je met mon listener sur l'input pour les ingredients
+		const ingredientsInput = document.querySelector("#ingredients-search");
+		ingredientsInput.addEventListener("input", filterIngredients);
+	}
+	/* -------------------------------------------------------------------------- */
+	/* ------------------------- recherche par appareils ------------------------ */
+
+	/* -------------------------------------------------------------------------- */
+	/* ------------------------ recherche par ustensiles ------------------------ */
+
 	/* -------------------------------------------------------------------------- */
 }
 
@@ -111,3 +124,5 @@ app.fetchRecipes();
 app.fetchIngredients();
 app.fetchAppareils();
 app.fetchUstensiles();
+app.mainSearch()
+app.IngredientsSearch()
