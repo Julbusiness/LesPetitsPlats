@@ -11,7 +11,7 @@ class App {
 
 	/* ---------- fetch des données recettes pour la création des cards --------- */
 	async fetchRecipes() {
-		// console.log('je suis ici')
+		// console.log('je passe dans fetchRecipes APP')
 		const recipesData = await this.recipes;
 
 		recipesData
@@ -24,6 +24,8 @@ class App {
 	/* -------------------------------------------------------------------------- */
 	/* ---------- fetch des données recettes pour la création du tag Ingredients --------- */
 	async fetchIngredients() {
+		// console.log('je passe dans fetchIngredients APP')
+
 		// je recupere mes données ingredients
 		const IngredientsData = await this.dataApi.getIngredients();
 
@@ -32,29 +34,11 @@ class App {
 			const Template = new Ingredients(ingredients);
 			this.$ingredientsWrapper.appendChild(Template.createIngredients());
 		});
-
-		let tags = document.querySelectorAll(".tags-item-ingredients");
-
-		// je met mon listener sur le click du bouton ingredients
-		tags.forEach((li) =>
-			li.addEventListener("click", () => {
-				toggleDropDownIngredients();
-			})
-		);
-
-		// je met mon listener sur mon le clicks des tags pour créer mes mini cartes ingredients
-		tags.forEach((li) =>
-			li.addEventListener("click", () => {
-				const tag = li.innerHTML;
-				const color = "primary";
-				const liItem = li;
-				createTag(tag, color, liItem);
-			})
-		);
 	}
 	/* -------------------------------------------------------------------------- */
 	/* ---------- fetch des données recettes pour la création du tag Appareils --------- */
 	async fetchAppareils() {
+		// console.log('je passe dans fetchAppareils APP')
 		const AppareilsData = await this.dataApi.getAppareils();
 
 		AppareilsData.forEach((appareils) => {
@@ -63,9 +47,9 @@ class App {
 		});
 
 		let tags = document.querySelectorAll(".tags-item-appareils");
-		tags.forEach((li) => li.addEventListener("click", toggleDropDownAppareils));
 		tags.forEach((li) =>
 			li.addEventListener("click", () => {
+				toggleDropDownAppareils();
 				const tag = li.innerHTML;
 				const color = "success";
 				const liItem = li;
@@ -76,6 +60,7 @@ class App {
 	/* -------------------------------------------------------------------------- */
 	/* ---------- fetch des données recettes pour la création du tag Ustensiles --------- */
 	async fetchUstensiles() {
+		// console.log('je passe dans fetchUstensiles APP')
 		const UstensilesData = await this.dataApi.getUstensiles();
 
 		UstensilesData.forEach((ustensiles) => {
@@ -85,11 +70,9 @@ class App {
 
 		let tags = document.querySelectorAll(".tags-item-ustensiles");
 		tags.forEach((li) =>
-			li.addEventListener("click", toggleDropDownUstensiles)
-		);
-		tags.forEach((li) =>
 			li.addEventListener("click", () => {
-				let tag = li.innerHTML;
+				toggleDropDownUstensiles();
+				const tag = li.innerHTML;
 				const color = "danger";
 				const liItem = li;
 				createTag(tag, color, liItem);
@@ -100,19 +83,40 @@ class App {
 	/* -------------------------- recherche principale -------------------------- */
 	async mainSearch() {
 		// je met mon listener sur l'input pour les ingredients
+		// console.log('je passe dans mainSearch APP')
+
 		const searchInput = document.querySelector("#search-input");
 		searchInput.addEventListener("input", filterRecipes);
 	}
 	/* -------------------------------------------------------------------------- */
 	/* ------------------------ recherche par ingrédients ----------------------- */
-	async IngredientsSearch() {
+	async ingredientsSearch() {
 		// je met mon listener sur l'input pour les ingredients
+		// console.log('je passe dans filterIngredientsByInput APP')
 		const ingredientsInput = document.querySelector("#ingredients-search");
-		ingredientsInput.addEventListener("input", filterIngredients);
+		ingredientsInput.addEventListener("input", filterIngredientsByInput);
+
+		let tags = document.querySelector(".tags");
+
+		// je met mon listener sur le click du bouton ingredients
+		tags.addEventListener("click", (e) => {
+			let currentTag = e.target;
+			toggleDropDownIngredients();
+			const tag = currentTag.innerHTML;
+			const color = "primary";
+			const liItem = currentTag;
+			console.log(e);
+			filterIngredientsByClick(tag);
+			createTag(tag, color, liItem);
+		});
 	}
 	/* -------------------------------------------------------------------------- */
 	/* ------------------------- recherche par appareils ------------------------ */
-
+	// async appareilsSearch() {
+	// 	// je met mon listener sur l'input pour les ingredients
+	// 	const appareilsInput = document.querySelector("#appareils-search");
+	// 	appareilsInput.addEventListener("input", filterAppareils);
+	// }
 	/* -------------------------------------------------------------------------- */
 	/* ------------------------ recherche par ustensiles ------------------------ */
 
@@ -124,5 +128,6 @@ app.fetchRecipes();
 app.fetchIngredients();
 app.fetchAppareils();
 app.fetchUstensiles();
-app.mainSearch()
-app.IngredientsSearch()
+app.mainSearch();
+app.ingredientsSearch();
+// app.appareilsSearch();

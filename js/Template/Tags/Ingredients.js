@@ -1,7 +1,6 @@
 class Ingredients {
 	constructor(ingredients) {
 		this._ingredients = ingredients;
-		// console.log(ingredients)
 	}
 
 

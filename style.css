@@ -127,7 +127,7 @@ header {
 	height: 364px;
 	display: flex;
 	border: none;
-	margin: auto;
+	/* margin: auto; */
 }
 
 .card-img-top {
@@ -407,4 +407,8 @@ header {
 
 .closeLi {
 	display: none;
+}
+
+.error {
+	margin-top: 50px;
 }

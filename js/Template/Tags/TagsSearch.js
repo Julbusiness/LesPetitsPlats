@@ -33,6 +33,7 @@ dropBtnAppareils.addEventListener("click", toggleDropDownAppareils);
 dropBtnUstensiles.addEventListener("click", toggleDropDownUstensiles);
 
 function toggleDropDownIngredients() {
+	console.log("Je passe dans toggleDropDownIngredient");
 	if (!toggleIndexIngredients) {
 		dropdownIngredients.style.height = "390px";
 		blocLinksIngredients.style.height = "390px";
@@ -156,42 +157,37 @@ function toggleDropDownUstensiles() {
 	toggleIndexUstensiles = false;
 }
 
-function toggleTagEnd(liItem) {
-	liItem.style.display = "none";
-}
-
-// fonction qui permet de fermer le bouton de tag et de faire apparaitre l'item dans la liste
-function showTag(liItem) {
-	liItem.style.display = "block";
-}
-
-// fonction qui permet de fermer le bouton de tag
-function closeTag(li) {
-	li.remove();
-}
-
 // je crée le li de tags dynamiquement
 function createTag(tag, color, liItem) {
 	let tagsWrapper = document.querySelector(".tags-card-ul");
+	console.log("je passe dans createTag");
 
 	let tagLi = document.createElement("li");
 	tagLi.classList.add("btn");
 	tagLi.classList.add(`btn-${color}`);
 	tagLi.classList.add("notif");
 	tagLi.innerHTML = tag;
+	console.log("je crée mon tag / etiquette");
 
 	let imgClose = document.createElement("img");
 	imgClose.src = "../../../Assets/close.png";
 	imgClose.classList.add("close");
+	console.log("j'applique la classe close sur mon image");
 
 	tagsWrapper.appendChild(tagLi);
 	tagLi.appendChild(imgClose);
 
-	toggleTagEnd(liItem);
+	liItem.style.display = "none";
+	console.log(liItem);
+	console.log("je masque mon item");
 
 	// je crée un listener au click sur chaque li tags crée
 	imgClose.addEventListener("click", () => {
-		showTag(liItem);
-		closeTag(tagLi);
+		liItem.style.display = "block";
+		console.log("je fais apparaitre mon tag lorsque je ferme le tag");
+		tagLi.remove();
+		console.log("je supprime mon tag lorsque je ferme le tag");
+
+		filterIngredientsByClick;
 	});
 }

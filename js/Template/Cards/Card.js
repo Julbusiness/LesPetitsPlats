@@ -1,13 +1,15 @@
 class Card {
 	constructor(recipe) {
 		this._recipe = recipe;
+    // console.log(this._recipe);
 	}
 
 	/* -------------------------------------------------------------------------- */
 	/* --------------------- creation des cartes de recette --------------------- */
 	createRecipeCard() {
-		const $wrapper = document.createElement("div");
-		$wrapper.classList.add("card");
+    console.log('je suis de createRecipeCard')
+    const $wrapper = document.createElement("div");
+    $wrapper.classList.add("card");
 
 		const ingredients = this._recipe.ingredients;
 		// console.log(ingredients);

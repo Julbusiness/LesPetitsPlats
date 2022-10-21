@@ -1,7 +1,9 @@
 const searchResultIngredients = document.querySelector(".tags");
 
 // je crée ma fonction de filtres des ingredients
-function filterIngredients(e) {
+function filterIngredientsByInput(e) {
+	console.log("je passe dans filterIngredientsByInput");
+
 	const searchedIngredients = e.target.value.toLowerCase();
 
 	if (searchedIngredients.length >= 0) {
@@ -22,35 +24,53 @@ function filterIngredients(e) {
 
 		searchResultIngredients.innerHTML = "";
 
-		const filteredArrIngredients = ingredientsList.filter((el) =>
-			el.toLowerCase().includes(searchedIngredients)
+		const currentRecipesIngredients = ingredientsList.filter((el) =>
+			el.toLowerCase().startsWith(searchedIngredients)
 		);
 
-		console.log(filteredArrIngredients);
-		filteredArrIngredients.sort();
-		filteredArrIngredients.forEach((ingredient) => {
+		// console.log(currentRecipesArrredients);
+		currentRecipesIngredients.sort();
+		currentRecipesIngredients.forEach((ingredient) => {
 			const currentIngredient = new Ingredients(ingredient);
-			ulTagsIngredients.appendChild(currentIngredient.createIngredients())
+			ulTagsIngredients.appendChild(currentIngredient.createIngredients());
 		});
 
-		let tags = document.querySelectorAll(".tags-item-ingredients");
-
-		// je met mon listener sur le click du bouton ingredients
-		tags.forEach((li) =>
-			li.addEventListener("click", () => {
-				toggleDropDownIngredients();
-			})
-		);
-
-		tags.forEach((li) =>
-			li.addEventListener("click", () => {
-				const tag = li.innerHTML;
-				const color = "primary";
-				const liItem = li;
-				createTag(tag, color, liItem);
-			})
+		recipes.filter(
+			(el) =>
+				el.name.toLowerCase().includes(searchedIngredients) ||
+				el.description.toLowerCase().includes(searchedIngredients) ||
+				el.ingredients.forEach((ingredient) => {
+					ingredient.ingredient.toLowerCase().includes(searchedIngredients);
+				})
 		);
 	} else {
-		console.log("je suis dans le else");
+		console.log("je suis dans le else de ingredientsSearch");
 	}
+}
+
+function filterIngredientsByClick(e) {
+	console.log("je passe dans filterIngredientsByClick");
+
+	// correspond au tag sur lequel on clic
+	const searchedIngredients = e.toLowerCase();
+
+	// j'initialise mon tableau vide qui contiendra les recettes en cours
+	let currentRecipesArr = [];
+
+	// je place dans mon tableau vide les recettes en cours de selection
+	recipes.filter((el) =>
+		el.ingredients.forEach((ingredient) => {
+			ingredient.ingredient.toLowerCase().includes(searchedIngredients);
+
+			if (ingredient.ingredient.toLowerCase().includes(searchedIngredients)) {
+				currentRecipesArr.push(el);
+			}
+		})
+	);
+
+	getRecipesFiltered(currentRecipesArr);
+	createRecipeList(currentRecipesArr);
+	getIngredients(currentRecipesArr);
+	getAppareils(currentRecipesArr);
+	getUstensiles(currentRecipesArr);
 }
