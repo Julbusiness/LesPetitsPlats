@@ -105,7 +105,7 @@ class App {
 			const tag = currentTag.innerHTML;
 			const color = "primary";
 			const liItem = currentTag;
-			console.log(e);
+			// console.log(e);
 			filterIngredientsByClick(tag);
 			createTag(tag, color, liItem);
 		});

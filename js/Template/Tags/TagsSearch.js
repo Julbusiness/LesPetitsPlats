@@ -167,27 +167,30 @@ function createTag(tag, color, liItem) {
 	tagLi.classList.add(`btn-${color}`);
 	tagLi.classList.add("notif");
 	tagLi.innerHTML = tag;
-	console.log("je crée mon tag / etiquette");
+	// console.log("je crée mon tag / etiquette");
 
 	let imgClose = document.createElement("img");
 	imgClose.src = "../../../Assets/close.png";
 	imgClose.classList.add("close");
-	console.log("j'applique la classe close sur mon image");
+	// console.log("j'applique la classe close sur mon image");
 
 	tagsWrapper.appendChild(tagLi);
 	tagLi.appendChild(imgClose);
 
+	console.log(liItem)
 	liItem.style.display = "none";
-	console.log(liItem);
-	console.log("je masque mon item");
 
-	// je crée un listener au click sur chaque li tags crée
 	imgClose.addEventListener("click", () => {
 		liItem.style.display = "block";
-		console.log("je fais apparaitre mon tag lorsque je ferme le tag");
+		// console.log("je fais apparaitre mon tag lorsque je ferme le tag");
 		tagLi.remove();
-		console.log("je supprime mon tag lorsque je ferme le tag");
-
-		filterIngredientsByClick;
+		// console.log("je supprime mon tag lorsque je ferme le tag");
+		
+		deleteTag()
 	});
+}
+
+function deleteTag() {
+	console.log('Je passe par deleteTag')
+	getRecipes()
 }
