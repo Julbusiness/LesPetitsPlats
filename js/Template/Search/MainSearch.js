@@ -18,11 +18,6 @@ async function getRecipes() {
 // j'appel getRecipes
 getRecipes();
 
-// async function getRecipesFiltered(filteredArr) {
-// 	console.log("je suis dans getRecipesFiltered");
-// 	recipes = filteredArr;
-// }
-
 // je crée la structure de ma nouvelle carte
 function createRecipeList(RecipeList) {
 	console.log("je suis dans createRecipeList");
@@ -338,26 +333,24 @@ function filterCurrentTags() {
 function hasTagForIngredients(recipe) {
 	// console.log("Je passe dans ma fonction hasTagForIngredients");
 
-	const filteredIngredients = [];
+	const filteredIngredientsList = [];
 
 	recipe.ingredients.forEach((ingredientList) => {
 
-		filteredIngredients.push(ingredientList.ingredient.toLowerCase())
+		filteredIngredientsList.push(ingredientList.ingredient.toLowerCase())
 		// console.log(filteredIngredients)
 
 
 	});
 
-	console.log(filteredIngredients)
-	console.log(searchedIngredientsList)
+	const result = filteredIngredientsList.filter(x => searchedIngredientsList.includes(x))
+	console.log('Les elements communs sont ' +  result)
 
-	const x = filteredIngredients.filter(ingredient => ingredient.includes(searchedIngredientsList))
-		console.log(x)
-		// console.log('MATCH INGREDIENT')
-		// console.log(filteredIngredients)
-		// console.log(searchedIngredientsList)
-		// console.log(recipe)
+	if (result.length === searchedIngredientsList.length){
+		console.log(recipe)
 		return true
-
+	} else {
+		return false
+	}
 
 }

@@ -92,7 +92,7 @@ class App {
 	/* ------------------------ recherche par ingrédients ----------------------- */
 	async ingredientsSearch() {
 		// je met mon listener sur l'input pour les ingredients
-		// console.log('je passe dans filterIngredientsByInput APP')
+		// console.log("je passe dans filterIngredientsByInput APP");
 		const ingredientsInput = document.querySelector("#ingredients-search");
 		ingredientsInput.addEventListener("input", filterIngredientsByInput);
 
@@ -112,11 +112,7 @@ class App {
 	}
 	/* -------------------------------------------------------------------------- */
 	/* ------------------------- recherche par appareils ------------------------ */
-	// async appareilsSearch() {
-	// 	// je met mon listener sur l'input pour les ingredients
-	// 	const appareilsInput = document.querySelector("#appareils-search");
-	// 	appareilsInput.addEventListener("input", filterAppareils);
-	// }
+
 	/* -------------------------------------------------------------------------- */
 	/* ------------------------ recherche par ustensiles ------------------------ */
 
@@ -130,4 +126,3 @@ app.fetchAppareils();
 app.fetchUstensiles();
 app.mainSearch();
 app.ingredientsSearch();
-// app.appareilsSearch();
