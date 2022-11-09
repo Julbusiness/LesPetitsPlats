@@ -6,6 +6,7 @@ const searchResult = document.querySelector(".cards");
 
 // je crée une variable pour mon array
 let recipes;
+let tags = [];
 
 // je déclenche un nouveau fetch des données
 async function getRecipes() {
@@ -39,13 +40,10 @@ const ulTagsAppareils = document.querySelector(".tags2");
 const ulTagsUstensiles = document.querySelector(".tags3");
 
 // j'applique le filtre sur les ingredients
-async function getIngredients(currentRecipesArr) {
+async function getIngredients(currentRecipesArr, tags) {
 	console.log("je suis dans getIngredients");
 	// console.log(currentRecipesArr)
-	const ingredientsList = [];
-
-	//! filtrer les ingredients restants sauf le currentTag
-	//! faire la meme pour les appareils et ustensiles
+	let ingredientsList = [];
 
 	currentRecipesArr.forEach((recipe) => {
 		recipe.ingredients.forEach((ingredient) => {
@@ -56,20 +54,42 @@ async function getIngredients(currentRecipesArr) {
 
 			if (found === undefined) {
 				ulTagsIngredients.innerHTML = "";
-				ingredientsList.push(ingredient.ingredient);
-				// console.log(ingredientsList)
-			} else {
+				ingredientsList.push(ingredient.ingredient.toLowerCase());
+				console.log(ingredientsList);
 			}
 		});
 	});
 
-	// faire un filter avec condition true ou false
+	// enleve les doublons
+	const arrayCleaned = [...new Set(ingredientsList)];
 
-	ingredientsList.sort();
-	ingredientsList.forEach((ingredient) => {
+	// trie par ordre alphabetiques
+	arrayCleaned.sort();
+
+	// boucles pour créer chaque ingredient
+	arrayCleaned.forEach((ingredient) => {
 		const currentIngredients = new Ingredients(ingredient);
 		ulTagsIngredients.appendChild(currentIngredients.createIngredients());
 	});
+
+	// filtre les elements du tableau arrayCleaned pour vérifier si il corresponde a un element du tableau tags, dans le but de le faire disparaitre de la liste si il existe
+
+	let common = arrayCleaned.filter((x) => !x.includes(tags));
+	console.log(arrayCleaned);
+	console.log(tags);
+	console.log(common);
+
+	if (common) {
+		ulTagsIngredients.innerHTML = "";
+		ingredientsList = common;
+		console.log(ingredientsList);
+
+		ingredientsList.forEach((ingredient) => {
+			const currentIngredients = new Ingredients(ingredient);
+			console.log(currentIngredients);
+			ulTagsIngredients.appendChild(currentIngredients.createIngredients());
+		});
+	}
 }
 
 async function getAppareils(currentRecipesArr) {
@@ -119,7 +139,6 @@ async function getUstensiles(currentRecipesArr) {
 	});
 }
 
-//! il faut adapter le code pour que filterecipes soit appelé à chaque action, click ajout/supp etc
 async function filterRecipes(e) {
 	const searchedString = e.target.value.toLowerCase();
 	console.log("je passe dans filterRecipes");
@@ -295,22 +314,21 @@ function filterIngredientsByInput(e) {
 }
 
 // je crée ma fonction de filtres des ingredients par click de tags
-const searchedIngredientsList = [];
-const allIngredients = [];
-const ingredientsPerRecipe = []
 
-function filterIngredientsByClick(tag) {
+const allIngredients = [];
+const ingredientsPerRecipe = [];
+
+function filterIngredientsByClick(tag, color, liItem) {
 	console.log("je passe dans filterIngredientsByClick");
 	// console.log(e);
 	searchResult.innerHTML = "";
 
-	searchedIngredientsList.push(tag.toLowerCase());
-	// console.log(searchedIngredientsList);
-
-	filterCurrentTags();
+	tags.push(tag.toLowerCase());
+	filterCurrentTags(tags);
+	createTag(tag, color, liItem);
 }
 
-function filterCurrentTags() {
+function filterCurrentTags(tags) {
 	console.log("je passe dans filterCurrentTags");
 
 	let currentRecipesArr = [];
@@ -318,14 +336,9 @@ function filterCurrentTags() {
 	// utiliser filter et find pour adapter le bout de code 328 a 333
 	currentRecipesArr = recipes.filter((recipe) => hasTagForIngredients(recipe));
 
-	// console.log(recipes.filter(recipe => console.log(recipe)))
-
-	// console.log(currentRecipesArr);
-
-	// getRecipesFiltered(currentRecipesArr);
 	getRecipes();
 	createRecipeList(currentRecipesArr);
-	getIngredients(currentRecipesArr); // passer searchedIngredientsList
+	getIngredients(currentRecipesArr, tags);
 	getAppareils(currentRecipesArr);
 	getUstensiles(currentRecipesArr);
 }
@@ -336,21 +349,40 @@ function hasTagForIngredients(recipe) {
 	const filteredIngredientsList = [];
 
 	recipe.ingredients.forEach((ingredientList) => {
-
-		filteredIngredientsList.push(ingredientList.ingredient.toLowerCase())
+		filteredIngredientsList.push(ingredientList.ingredient.toLowerCase());
 		// console.log(filteredIngredients)
-
-
 	});
 
-	const result = filteredIngredientsList.filter(x => searchedIngredientsList.includes(x))
-	console.log('Les elements communs sont ' +  result)
+	const result = filteredIngredientsList.filter((x) => tags.includes(x));
+	// console.log("Les elements communs sont " + result);
+	// console.log(tags)
 
-	if (result.length === searchedIngredientsList.length){
-		console.log(recipe)
-		return true
+	if (result.length === tags.length) {
+		// console.log(recipe);
+		return true;
 	} else {
-		return false
+		return false;
 	}
+}
 
+/* ----------------------------- test deleteTag ----------------------------- */
+
+function deleteTag(e) {
+	let notif = e.path[1];
+	// console.log(e.path[1])
+
+	// je supprime le li (pour le moment le premier trouvé)
+	notif.remove();
+
+	// je veux filtrer les données une nouvelle fois pour ajouter les recettes
+	const notifDel = e.target.previousSibling.data.toLowerCase().split();
+
+	const result = tags.filter((ingredient) => !ingredient.includes(notifDel));
+
+	if (result) {
+		tags = result;
+		console.log(tags);
+		filterCurrentTags();
+		return result;
+	}
 }

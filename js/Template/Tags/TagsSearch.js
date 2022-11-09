@@ -174,23 +174,8 @@ function createTag(tag, color, liItem) {
 	imgClose.classList.add("close");
 	// console.log("j'applique la classe close sur mon image");
 
+	imgClose.addEventListener('click', deleteTag)
+
 	tagsWrapper.appendChild(tagLi);
 	tagLi.appendChild(imgClose);
-
-	console.log(liItem)
-	liItem.style.display = "none";
-
-	imgClose.addEventListener("click", () => {
-		liItem.style.display = "block";
-		// console.log("je fais apparaitre mon tag lorsque je ferme le tag");
-		tagLi.remove();
-		// console.log("je supprime mon tag lorsque je ferme le tag");
-		
-		deleteTag()
-	});
-}
-
-function deleteTag() {
-	console.log('Je passe par deleteTag')
-	getRecipes()
 }

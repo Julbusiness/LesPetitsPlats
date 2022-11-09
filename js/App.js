@@ -97,17 +97,17 @@ class App {
 		ingredientsInput.addEventListener("input", filterIngredientsByInput);
 
 		let tags = document.querySelector(".tags");
+		let closeTag = document.querySelector(".tags-card-ul");
 
 		// je met mon listener sur le click du bouton ingredients
 		tags.addEventListener("click", (e) => {
 			let currentTag = e.target;
-			toggleDropDownIngredients();
 			const tag = currentTag.innerHTML;
 			const color = "primary";
 			const liItem = currentTag;
-			// console.log(e);
-			filterIngredientsByClick(tag);
-			createTag(tag, color, liItem);
+
+			toggleDropDownIngredients();
+			filterIngredientsByClick(tag, color, liItem);
 		});
 	}
 	/* -------------------------------------------------------------------------- */
