@@ -8,8 +8,9 @@ class App {
 		this.dataApi = new Api("/data/recipes.json");
 		this.recipes = this.dataApi.getRecipes();
 	}
-
+	/* -------------------------------------------------------------------------- */
 	/* ---------- fetch des données recettes pour la création des cards --------- */
+	/* -------------------------------------------------------------------------- */
 	async fetchRecipes() {
 		// console.log('je passe dans fetchRecipes APP')
 		const recipesData = await this.recipes;
@@ -23,6 +24,7 @@ class App {
 	}
 	/* -------------------------------------------------------------------------- */
 	/* ---------- fetch des données recettes pour la création du tag Ingredients --------- */
+	/* -------------------------------------------------------------------------- */
 	async fetchIngredients() {
 		// console.log('je passe dans fetchIngredients APP')
 
@@ -37,6 +39,7 @@ class App {
 	}
 	/* -------------------------------------------------------------------------- */
 	/* ---------- fetch des données recettes pour la création du tag Appareils --------- */
+	/* -------------------------------------------------------------------------- */
 	async fetchAppareils() {
 		// console.log('je passe dans fetchAppareils APP')
 		const AppareilsData = await this.dataApi.getAppareils();
@@ -53,12 +56,12 @@ class App {
 				const tag = li.innerHTML;
 				const color = "success";
 				const liItem = li;
-				createTag(tag, color, liItem);
 			})
 		);
 	}
 	/* -------------------------------------------------------------------------- */
 	/* ---------- fetch des données recettes pour la création du tag Ustensiles --------- */
+	/* -------------------------------------------------------------------------- */
 	async fetchUstensiles() {
 		// console.log('je passe dans fetchUstensiles APP')
 		const UstensilesData = await this.dataApi.getUstensiles();
@@ -75,12 +78,12 @@ class App {
 				const tag = li.innerHTML;
 				const color = "danger";
 				const liItem = li;
-				createTag(tag, color, liItem);
 			})
 		);
 	}
 	/* -------------------------------------------------------------------------- */
 	/* -------------------------- recherche principale -------------------------- */
+	/* -------------------------------------------------------------------------- */
 	async mainSearch() {
 		// je met mon listener sur l'input pour les ingredients
 		// console.log('je passe dans mainSearch APP')
@@ -90,6 +93,7 @@ class App {
 	}
 	/* -------------------------------------------------------------------------- */
 	/* ------------------------ recherche par ingrédients ----------------------- */
+	/* -------------------------------------------------------------------------- */
 	async ingredientsSearch() {
 		// je met mon listener sur l'input pour les ingredients
 		// console.log("je passe dans filterIngredientsByInput APP");
@@ -97,7 +101,6 @@ class App {
 		ingredientsInput.addEventListener("input", filterIngredientsByInput);
 
 		let tags = document.querySelector(".tags");
-		let closeTag = document.querySelector(".tags-card-ul");
 
 		// je met mon listener sur le click du bouton ingredients
 		tags.addEventListener("click", (e) => {
@@ -112,11 +115,48 @@ class App {
 	}
 	/* -------------------------------------------------------------------------- */
 	/* ------------------------- recherche par appareils ------------------------ */
+	/* -------------------------------------------------------------------------- */
+	async appareilsSearch() {
+		// je met mon listener sur l'input pour les ingredients
+		// console.log("je passe dans filterIngredientsByInput APP");
+		const AppareilsInput = document.querySelector("#appareils-search");
+		AppareilsInput.addEventListener("input", filterAppareilsByInput);
 
+		let tags2 = document.querySelector(".tags2");
+
+		// je met mon listener sur le click du bouton appareils
+		tags2.addEventListener("click", (e) => {
+			let currentTag = e.target;
+			const tag = currentTag.innerHTML;
+			const color = "success";
+			const liItem = currentTag;
+
+			toggleDropDownAppareils();
+			filterAppareilsByClick(tag, color, liItem);
+		});
+	}
 	/* -------------------------------------------------------------------------- */
 	/* ------------------------ recherche par ustensiles ------------------------ */
-
 	/* -------------------------------------------------------------------------- */
+	async ustensilesSearch() {
+		// je met mon listener sur l'input pour les ingredients
+		// console.log("je passe dans filterIngredientsByInput APP");
+		const ustensilesInput = document.querySelector("#ustensiles-search");
+		ustensilesInput.addEventListener("input", filterUstensilesByInput);
+
+		let tags3 = document.querySelector(".tags3");
+
+		// je met mon listener sur le click du bouton ingredients
+		tags3.addEventListener("click", (e) => {
+			let currentTag = e.target;
+			const tag = currentTag.innerHTML;
+			const color = "danger";
+			const liItem = currentTag;
+
+			toggleDropDownUstensiles();
+			filterUstensilesByClick(tag, color, liItem);
+		});
+	}
 }
 
 const app = new App();
@@ -126,3 +166,5 @@ app.fetchAppareils();
 app.fetchUstensiles();
 app.mainSearch();
 app.ingredientsSearch();
+app.appareilsSearch()
+app.ustensilesSearch()
