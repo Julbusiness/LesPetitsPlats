@@ -169,7 +169,7 @@ async function getAppareils(currentRecipesArr, tags) {
 
 async function getUstensiles(currentRecipesArr, tags) {
 	console.log("je suis dans getUstensiles");
-	const ustensilesList = [];
+	let ustensilesList = [];
 
 	currentRecipesArr.forEach((recipe) => {
 		recipe.ustensils.forEach((ustensile) => {
@@ -184,11 +184,44 @@ async function getUstensiles(currentRecipesArr, tags) {
 		});
 	});
 
+	const arrayCleaned = [...new Set(ustensilesList)];
+
+
 	ustensilesList.sort();
 	ustensilesList.forEach((ustensile) => {
 		const currentUstensiles = new Ustensiles(ustensile);
 		ulTagsUstensiles.appendChild(currentUstensiles.createUstensiles());
 	});
+
+	if (tags !== undefined) {
+		// console.log(tags);
+		// console.log(arrayCleaned);
+		let common = arrayCleaned.filter(function (e) {
+			return tags.indexOf(e) === -1;
+		});
+		// console.log(common);
+		if (common) {
+			ulTagsUstensiles.innerHTML = "";
+			ustensilesList = common;
+			// console.log(ingredientsList);
+
+			ustensilesList.forEach((ustensile) => {
+				const currentUstensiles = new Ustensiles(ustensile);
+				// console.log(currentIngredients);
+				ulTagsUstensiles.appendChild(currentUstensiles.createUstensiles());
+			});
+		} else {
+			let secondFilter = arrayCleaned.filter(function (e) {
+				return tags.indexOf(e) == -1;
+			});
+
+			secondFilter.forEach((ustensile) => {
+				const currentUstensiles = new Ustensiles(ustensile);
+				// console.log(currentIngredients);
+				ulTagsUstensiles.appendChild(currentUstensiles.createUstensiles());
+			});
+		}
+	}
 }
 
 async function filterRecipes(e) {
@@ -441,27 +474,34 @@ function deleteTag(e) {
 /* --------------------------- appareils search --------------------------- */
 /* -------------------------------------------------------------------------- */
 
-const searchResultAppareils = document.querySelector(".tags");
+const searchResultAppareils = document.querySelector(".tags2");
+// console.log(searchResultAppareils);
 
 // je crée ma fonction de filtres des ingredients par remplissage de l'input
 function filterAppareilsByInput(e) {
 	console.log("je passe dans filterAppareilsByInput");
 
-	const searchedAppareils = e.target.value.toLowerCase();
+	console.log(e.target.value)
+
+	const searchedAppareils = e.target.value;
 
 	if (searchedAppareils.length >= 0) {
 		const appareilsList = [];
 
 		recipes.forEach((recipe) => {
-			recipe.ingredients.forEach((appareil) => {
-				const foundAppareils = appareilsList.find(
-					(ingredientAlreadyCheck) => ingredientAlreadyCheck === appareil
+
+			console.log(recipe.appliance)
+			const foundAppareils = appareilsList.find(
+				(appareilAlreadyCheck) => appareilAlreadyCheck === recipe.appliance
 				);
+				console.log(foundAppareils)
 
 				if (foundAppareils === undefined) {
-					appareilsList.push(appareil);
+					appareilsList.push(recipe.appliance);
 				}
-			});
+
+				console.log(appareilsList)
+		
 		});
 
 		searchResultAppareils.innerHTML = "";
@@ -570,20 +610,22 @@ const searchResultUstensiles = document.querySelector(".tags3");
 function filterUstensilesByInput(e) {
 	console.log("je passe dans filterUstensilesByInput");
 
-	const searchedUstensiles = e.target.value.toLowerCase();
+	const searchedUstensiles = e.target.value;
 
 	if (searchedUstensiles.length >= 0) {
 		const ustensilesList = [];
 
 		recipes.forEach((recipe) => {
-			recipe.ustensiles.forEach((ustensile) => {
+			recipe.ustensils.forEach((ustensile) => {
+				console.log(ustensile)
 				const foundUstensiles = ustensilesList.find(
 					(ustensilesAlreadyCheck) =>
-						ustensilesAlreadyCheck === ustensile.ustensile
-				);
+					ustensilesAlreadyCheck === ustensile
+					);
+					console.log(foundUstensiles)
 
 				if (foundUstensiles === undefined) {
-					ustensilesList.push(ustensile.ustensile);
+					ustensilesList.push(ustensile);
 				}
 			});
 		});
@@ -605,8 +647,8 @@ function filterUstensilesByInput(e) {
 			(el) =>
 				el.name.toLowerCase().includes(searchedUstensiles) ||
 				el.description.toLowerCase().includes(searchedUstensiles) ||
-				el.ingredients.forEach((ustensile) => {
-					ustensile.ustensile.toLowerCase().includes(searchedUstensiles);
+				el.ustensils.forEach((ustensile) => {
+					ustensile.toLowerCase().includes(searchedUstensiles);
 				})
 		);
 	} else {
