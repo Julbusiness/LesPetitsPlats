@@ -33,7 +33,6 @@ dropBtnAppareils.addEventListener("click", toggleDropDownAppareils);
 dropBtnUstensiles.addEventListener("click", toggleDropDownUstensiles);
 
 function toggleDropDownIngredients() {
-	console.log("Je passe dans toggleDropDownIngredient");
 	if (!toggleIndexIngredients) {
 		dropdownIngredients.style.height = "390px";
 		blocLinksIngredients.style.height = "390px";
@@ -82,6 +81,7 @@ function toggleDropDownAppareils() {
 		blocLinksAppareils.style.height = "390px";
 		dropdownAppareils.style.width = "100%";
 		shortTitleAppareils.setAttribute("placeholder", "Rechercher un appareil");
+
 		shortTitleAppareils.style.opacity = "50%";
 		shortTitleAppareils.classList.add("open2");
 		dropBtnAppareils.classList.add("open-svg");
@@ -122,6 +122,7 @@ function toggleDropDownUstensiles() {
 		blocLinksUstensiles.style.height = "390px";
 		dropdownUstensiles.style.width = "100%";
 		shortTitleUstensiles.setAttribute("placeholder", "Rechercher un ustensile");
+		
 		shortTitleUstensiles.style.opacity = "50%";
 		shortTitleUstensiles.classList.add("open3");
 		dropBtnUstensiles.classList.add("open-svg");
@@ -167,14 +168,16 @@ function createTag(tag, color, liItem) {
 	tagLi.classList.add(`btn-${color}`);
 	tagLi.classList.add("notif");
 	tagLi.innerHTML = tag;
-	// console.log("je crée mon tag / etiquette");
+
 
 	let imgClose = document.createElement("img");
 	imgClose.src = "../../../Assets/close.png";
 	imgClose.classList.add("close");
-	// console.log("j'applique la classe close sur mon image");
 
-	imgClose.addEventListener('click', deleteTag)
+
+	imgClose.addEventListener("click", deleteTag);
+
+	// liItem.style.display = "none";
 
 	tagsWrapper.appendChild(tagLi);
 	tagLi.appendChild(imgClose);

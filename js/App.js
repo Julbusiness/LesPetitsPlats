@@ -117,14 +117,11 @@ class App {
 	/* ------------------------- recherche par appareils ------------------------ */
 	/* -------------------------------------------------------------------------- */
 	async appareilsSearch() {
-		// je met mon listener sur l'input pour les ingredients
-		// console.log("je passe dans filterIngredientsByInput APP");
 		const AppareilsInput = document.querySelector("#appareils-search");
 		AppareilsInput.addEventListener("input", filterAppareilsByInput);
 
 		let tags2 = document.querySelector(".tags2");
 
-		// je met mon listener sur le click du bouton appareils
 		tags2.addEventListener("click", (e) => {
 			let currentTag = e.target;
 			const tag = currentTag.innerHTML;
@@ -139,8 +136,6 @@ class App {
 	/* ------------------------ recherche par ustensiles ------------------------ */
 	/* -------------------------------------------------------------------------- */
 	async ustensilesSearch() {
-		// je met mon listener sur l'input pour les ingredients
-		// console.log("je passe dans filterIngredientsByInput APP");
 		const ustensilesInput = document.querySelector("#ustensiles-search");
 		ustensilesInput.addEventListener("input", filterUstensilesByInput);
 
