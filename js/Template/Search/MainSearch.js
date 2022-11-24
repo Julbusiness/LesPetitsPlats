@@ -49,8 +49,8 @@ async function getIngredients(currentRecipesArr, tags) {
 	currentRecipesArr.forEach((recipe) => {
 		recipe.ingredients.forEach((ingredient) => {
 			const found = ingredientsList.find(
-				(ingredientAlreadyCheck) =>
-					ingredientAlreadyCheck === ingredient.ingredient
+				(ingredientCheck) =>
+					ingredientCheck === ingredient.ingredient
 			);
 
 			if (found === undefined) {
@@ -75,43 +75,41 @@ async function getIngredients(currentRecipesArr, tags) {
 
 	// filtre les elements du tableau arrayCleaned pour vérifier si il corresponde a un element du tableau tags, dans le but de le faire disparaitre de la liste si il existe
 
-	if (tags !== undefined && tags.length !== 0) {
-		console.log(tags);
+	// console.log(arrayCleaned);
+	// console.log(tags);
+for (let tag of tags) {
+
+	if (tag.name !== undefined) {
+		console.log(tag.name);
 		console.log(arrayCleaned);
-		//! pb viens de la : le tag sors de la liste mais uniquement e quand il est visé .. si il y a plusieurs tag il remet celui d'avant dans la liste
-		for (let i = 0; i < tags.length; i++) {
-			let common = arrayCleaned.filter(function (e) {
-				console.log(i);
-				console.log(e);
-				console.log(tags);
-				console.log(tags[i].name.includes(e.toLowerCase()));
-				return !tags[i].name.includes(e.toLowerCase());
+		let common = arrayCleaned.filter(function (e) {
+			console.log(e.toLowerCase())
+			return !tag.name.includes(e.toLowerCase());
+		});
+		console.log(common);
+		if (common) {
+			ulTagsIngredients.innerHTML = "";
+			ingredientsList = common;
+			// console.log(ingredientsList);
+
+			ingredientsList.forEach((ingredient) => {
+				const currentIngredients = new Ingredients(ingredient);
+				// console.log(currentIngredients);
+				ulTagsIngredients.appendChild(currentIngredients.createIngredients());
 			});
-			//! jusque la ou plus
-			// console.log(common);
-			if (common) {
-				ulTagsIngredients.innerHTML = "";
-				ingredientsList = common;
-				// console.log(ingredientsList);
+		} else {
+			let secondFilter = arrayCleaned.filter(function (e) {
+				return tags.indexOf(e) == -1;
+			});
 
-				ingredientsList.forEach((ingredient) => {
-					const currentIngredients = new Ingredients(ingredient);
-					// console.log(currentIngredients);
-					ulTagsIngredients.appendChild(currentIngredients.createIngredients());
-				});
-			} else {
-				let secondFilter = arrayCleaned.filter(function (e) {
-					return tags.indexOf(e) == -1;
-				});
-
-				secondFilter.forEach((ingredient) => {
-					const currentIngredients = new Ingredients(ingredient);
-					// console.log(currentIngredients);
-					ulTagsIngredients.appendChild(currentIngredients.createIngredients());
-				});
-			}
+			secondFilter.forEach((ingredient) => {
+				const currentIngredients = new Ingredients(ingredient);
+				// console.log(currentIngredients);
+				ulTagsIngredients.appendChild(currentIngredients.createIngredients());
+			});
 		}
 	}
+}
 }
 
 async function getAppareils(currentRecipesArr, tags) {
@@ -144,8 +142,8 @@ async function getAppareils(currentRecipesArr, tags) {
 	// console.log(tags);
 
 	if (tags !== undefined && tags.length !== 0) {
-		console.log(tags);
-		console.log(arrayCleaned);
+		// console.log(tags);
+		// console.log(arrayCleaned);
 		let common = arrayCleaned.filter(function (e) {
 			// console.log(tags.indexOf(e))
 			return tags[0].name.indexOf(e.toLowerCase()) === -1;
@@ -566,7 +564,7 @@ function filterCurrentTags(tags) {
 }
 
 function recipesValidate(recipe) {
-	console.log("Je passe dans ma fonction hasTagForIngredients");
+	console.log("Je passe dans ma fonction recipesValidate");
 
 	const ingredients = recipe.ingredients;
 	const appareils = recipe.appliance.split();

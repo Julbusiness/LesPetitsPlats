@@ -161,5 +161,5 @@ app.fetchAppareils();
 app.fetchUstensiles();
 app.mainSearch();
 app.ingredientsSearch();
-app.appareilsSearch()
-app.ustensilesSearch()
+app.appareilsSearch();
+app.ustensilesSearch();
