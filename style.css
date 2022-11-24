@@ -1,3 +1,8 @@
+html {
+	--line-height: 12px;
+	--nth-lines-trunc: 6;
+}
+
 body {
 	padding: 20px;
 }
@@ -112,15 +117,17 @@ header {
 	max-width: 1240px;
 	margin: 0 auto;
 	display: flex;
-	gap: 50px;
+	gap: 45px;
 	flex-direction: row;
 	flex-wrap: wrap;
 }
 
 .card {
 	width: 380px;
+	height: 364px;
 	display: flex;
-	border-radius: 5px;
+	border: none;
+	/* margin: auto; */
 }
 
 .card-img-top {
@@ -131,22 +138,29 @@ header {
 }
 .detail {
 	display: flex;
+	flex-direction: column;
+	height: 186px;
+	border-radius: 0 0 5px 5px;
 }
 
 .card-body {
+	display: flex;
 	background: #e7e7e7;
-	width: 45%;
-	height: 178px;
-	padding: 15px 0px 15px 15px;
+	width: 100%;
+	padding: 15px 20px;
 }
 
 .card-text {
-	font-size: 16px;
+	font-size: 18px;
+	line-height: 22px;
 	margin-bottom: 10px;
+	max-width: 250px;
+	/* white-space: nowrap; */
 }
 
 .list-group {
-	width: 160px;
+	width: 171px;
+	height: 105px;
 }
 
 .list-group-item {
@@ -154,27 +168,27 @@ header {
 	border: none;
 	padding: 0;
 	font-size: 12px;
-	height: 100%;
-	line-height: 12px;
+	line-height: 14px;
+	font-weight: 400;
 }
 
 .time {
+	display: flex;
 	background: #e7e7e7;
-	width: 45%;
-	height: 178px;
-	padding: 15px 15px 15px 0;
+	width: 100%;
+	padding: 20px 20px 0 20px;
+	justify-content: space-between;
 }
 
 .delay {
 	display: flex;
-	justify-content: end;
-	align-items: start;
-	height: 30px;
-	line-height: 18px;
+	font-size: 18px;
+	height: 18px;
+	line-height: 22px;
+	font-weight: 600;
 }
 
 .delay span {
-	text-align: right;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -182,25 +196,31 @@ header {
 }
 
 .timing {
-	width: 45%;
-	font-size: 16px;
 	display: flex;
 	justify-content: center;
-	font-weight: 500;
 	padding-left: 5px;
 }
 
 .explain {
-	width: 160px;
+	width: 171px;
 	height: 109px;
-	font-size: 12px;
-	line-height: 12px;
 }
 
 .text-truncate {
-	display: block;
-	height: 85px;
-	text-overflow: ellipsis;
+	line-height: var(--line-height);
+	max-height: calc(var(--line-height) * var(--nth-lines-trunc));
+	overflow: hidden;
+	position: relative;
+	font-size: 12px;
+	align-items: left;
+	/* resize: horizontal; */
+}
+
+.text-truncate::after {
+	content: "...";
+	position: absolute;
+	bottom: 0;
+	right: 0;
 }
 
 /* -------------------------------- dropdown -------------------------------- */
@@ -282,7 +302,7 @@ header {
 .blocLinks-ustensiles {
 	padding: 0px;
 	transition: height 0.2s ease-in-out;
-	height: 0;
+	/* height: 0; */
 }
 
 .blocLinks-ingredients li,
@@ -305,15 +325,18 @@ header {
 	width: 100%;
 	max-width: 667px;
 	max-height: 390px;
-	flex-direction: raw;
+	flex-direction: row;
 	flex-wrap: wrap;
 	padding-left: 20px;
 	overflow: auto;
 }
 
 .list-item-ingredients,
+.tags-item-ingredients,
 .list-item-appareils,
-.list-item-ustensiles {
+.tags-item-appareils,
+.list-item-ustensiles,
+.tags-item-ustensiles {
 	background: none;
 	border: none;
 	font-size: 12px;
@@ -357,7 +380,7 @@ header {
 
 .btn-primary {
 	background: #3282f7;
-	border: none
+	border: none;
 }
 
 .btn-primary:hover {
@@ -366,7 +389,7 @@ header {
 
 .btn-success {
 	background: #6bd9a4;
-	border: none
+	border: none;
 }
 
 .btn-success:hover {
@@ -375,9 +398,17 @@ header {
 
 .btn-danger {
 	background: #ed6454;
-	border: none
+	border: none;
 }
 
 .btn-danger:hover {
 	background: #ed6354d8;
+}
+
+.closeLi {
+	display: none;
+}
+
+.error {
+	margin-top: 50px;
 }

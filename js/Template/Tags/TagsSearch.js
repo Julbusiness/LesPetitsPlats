@@ -1,10 +1,10 @@
 const dropdownIngredients = document.querySelector(".ingredients");
 const dropdownAppareils = document.querySelector(".appareils");
-const dropdownUstensiles = document.querySelector(".ustensiles")
+const dropdownUstensiles = document.querySelector(".ustensiles");
 
 const dropBtnIngredients = document.querySelector(".drop-btn-ingredients");
-const dropBtnAppareils = document.querySelector(".drop-btn-appareils")
-const dropBtnUstensiles = document.querySelector(".drop-btn-ustensiles")
+const dropBtnAppareils = document.querySelector(".drop-btn-appareils");
+const dropBtnUstensiles = document.querySelector(".drop-btn-ustensiles");
 
 const blocLinksIngredients = document.querySelector(".blocLinks-ingredients");
 const blocLinksAppareils = document.querySelector(".blocLinks-appareils");
@@ -14,7 +14,9 @@ const liItemsIngredients = document.querySelectorAll(".ingredients li");
 const liItemsAppareils = document.querySelectorAll(".appareils li");
 const liItemsUstensiles = document.querySelectorAll(".ustensiles li");
 
-const shortTitleIngredients = document.querySelector(".short-title-ingredients");
+const shortTitleIngredients = document.querySelector(
+	".short-title-ingredients"
+);
 const shortTitleAppareils = document.querySelector(".short-title-appareils");
 const shortTitleUstensiles = document.querySelector(".short-title-ustensiles");
 
@@ -32,10 +34,13 @@ dropBtnUstensiles.addEventListener("click", toggleDropDownUstensiles);
 
 function toggleDropDownIngredients() {
 	if (!toggleIndexIngredients) {
-		dropdownIngredients.style.height = `${blocLinksIngredients.scrollHeight}px`;
-		blocLinksIngredients.style.height = `${blocLinksIngredients.scrollHeight}px`;
+		dropdownIngredients.style.height = "390px";
+		blocLinksIngredients.style.height = "390px";
 		dropdownIngredients.style.width = "100%";
-		shortTitleIngredients.setAttribute("placeholder", "Rechercher un ingrédient")
+		shortTitleIngredients.setAttribute(
+			"placeholder",
+			"Rechercher un ingrédient"
+		);
 		shortTitleIngredients.style.opacity = "50%";
 		shortTitleIngredients.classList.add("open");
 		dropBtnIngredients.classList.add("open-svg");
@@ -60,23 +65,23 @@ function toggleDropDownIngredients() {
 		return;
 	}
 
-	
 	blocLinksIngredients.style.height = 0;
 	dropdownIngredients.style.width = "170px";
 	dropdownIngredients.style.height = "69px";
-	shortTitleIngredients.setAttribute("placeholder", "Ingrédients" )
+	shortTitleIngredients.setAttribute("placeholder", "Ingrédients");
 	shortTitleIngredients.style.opacity = "100%";
 	shortTitleIngredients.classList.remove("open");
 	dropBtnIngredients.classList.remove("open-svg");
 	toggleIndexIngredients = false;
-	}
+}
 
 function toggleDropDownAppareils() {
 	if (!toggleIndexAppareils) {
-		dropdownAppareils.style.height = `${blocLinksAppareils.scrollHeight}px`;
-		blocLinksAppareils.style.height = `${blocLinksAppareils.scrollHeight}px`;
+		dropdownAppareils.style.height = "390px";
+		blocLinksAppareils.style.height = "390px";
 		dropdownAppareils.style.width = "100%";
-		shortTitleAppareils.setAttribute("placeholder", "Rechercher un appareil")
+		shortTitleAppareils.setAttribute("placeholder", "Rechercher un appareil");
+
 		shortTitleAppareils.style.opacity = "50%";
 		shortTitleAppareils.classList.add("open2");
 		dropBtnAppareils.classList.add("open-svg");
@@ -93,7 +98,7 @@ function toggleDropDownAppareils() {
 
 		blocLinksUstensiles.style.height = 0;
 		dropdownUstensiles.style.width = "170px";
-		shortTitleUstensiles.setAttribute("placeholder", "Ustensiles")
+		shortTitleUstensiles.setAttribute("placeholder", "Ustensiles");
 		shortTitleUstensiles.style.opacity = "100%";
 		shortTitleUstensiles.classList.remove("open3");
 		dropBtnUstensiles.classList.remove("open-svg");
@@ -104,7 +109,7 @@ function toggleDropDownAppareils() {
 	blocLinksAppareils.style.height = 0;
 	dropdownAppareils.style.width = "170px";
 	dropdownAppareils.style.height = "69px";
-	shortTitleAppareils.setAttribute("placeholder", "Appareils")
+	shortTitleAppareils.setAttribute("placeholder", "Appareils");
 	shortTitleAppareils.style.opacity = "100%";
 	shortTitleAppareils.classList.remove("open2");
 	dropBtnAppareils.classList.remove("open-svg");
@@ -113,28 +118,29 @@ function toggleDropDownAppareils() {
 
 function toggleDropDownUstensiles() {
 	if (!toggleIndexUstensiles) {
-		dropdownUstensiles.style.height = `${blocLinksUstensiles.scrollHeight}px`;
-		blocLinksUstensiles.style.height = `${blocLinksUstensiles.scrollHeight}px`;
+		dropdownUstensiles.style.height = "390px";
+		blocLinksUstensiles.style.height = "390px";
 		dropdownUstensiles.style.width = "100%";
-		shortTitleUstensiles.setAttribute("placeholder", "Rechercher un ustensile")
+		shortTitleUstensiles.setAttribute("placeholder", "Rechercher un ustensile");
+		
 		shortTitleUstensiles.style.opacity = "50%";
 		shortTitleUstensiles.classList.add("open3");
 		dropBtnUstensiles.classList.add("open-svg");
 		dropdownIngredients.style.height = "69px";
-		dropdownAppareils.style.height = "69px"
+		dropdownAppareils.style.height = "69px";
 		toggleIndexUstensiles = true;
 
 		blocLinksIngredients.style.height = 0;
 		dropdownIngredients.style.width = "170px";
-		shortTitleIngredients.setAttribute("placeholder", "Ingrédients")
+		shortTitleIngredients.setAttribute("placeholder", "Ingrédients");
 		shortTitleIngredients.style.opacity = "100%";
 		shortTitleIngredients.classList.remove("open");
 		dropBtnIngredients.classList.remove("open-svg");
 		toggleIndexIngredients = false;
-	
+
 		blocLinksAppareils.style.height = 0;
 		dropdownAppareils.style.width = "170px";
-		shortTitleAppareils.setAttribute("placeholder", "Appareils")
+		shortTitleAppareils.setAttribute("placeholder", "Appareils");
 		shortTitleAppareils.style.opacity = "100%";
 		shortTitleAppareils.classList.remove("open2");
 		dropBtnAppareils.classList.remove("open-svg");
@@ -145,27 +151,34 @@ function toggleDropDownUstensiles() {
 	blocLinksUstensiles.style.height = 0;
 	dropdownUstensiles.style.width = "170px";
 	dropdownUstensiles.style.height = "69px";
-	shortTitleUstensiles.setAttribute("placeholder", "Ustensiles")
+	shortTitleUstensiles.setAttribute("placeholder", "Ustensiles");
 	shortTitleUstensiles.style.opacity = "100%";
 	shortTitleUstensiles.classList.remove("open3");
 	dropBtnUstensiles.classList.remove("open-svg");
 	toggleIndexUstensiles = false;
 }
 
-function createTags(tag, color) {
-			let tagsWrapper = document.querySelector(".tags-card-ul")
+// je crée le li de tags dynamiquement
+function createTag(tag, color, liItem) {
+	let tagsWrapper = document.querySelector(".tags-card-ul");
+	console.log("je passe dans createTag");
 
-			let tagsLi = document.createElement("li")
-			tagsLi.classList.add("btn")
-			tagsLi.classList.add(`btn-${color}`)
-			tagsLi.classList.add("notif")
-			tagsLi.innerHTML = tag
-			
-			let imgClose = document.createElement("img")
-			imgClose.src = "../../../Assets/close.png"
-			imgClose.classList.add('close')
+	let tagLi = document.createElement("li");
+	tagLi.classList.add("btn");
+	tagLi.classList.add(`btn-${color}`);
+	tagLi.classList.add("notif");
+	tagLi.innerHTML = tag;
 
 
-			tagsWrapper.appendChild(tagsLi)
-			tagsLi.appendChild(imgClose)
-		};
+	let imgClose = document.createElement("img");
+	imgClose.src = "../../../Assets/close.png";
+	imgClose.classList.add("close");
+
+
+	imgClose.addEventListener("click", deleteTag);
+
+	// liItem.style.display = "none";
+
+	tagsWrapper.appendChild(tagLi);
+	tagLi.appendChild(imgClose);
+}

@@ -1,7 +1,6 @@
 class Api {
 	constructor(url) {
 		this._url = url;
-		// console.log(this._url);
 	}
 
 	async getRecipes() {
@@ -80,8 +79,7 @@ class Api {
 			recipes.forEach((recipe) => {
 				recipe.ustensils.forEach((ustensile) => {
 					const found = ustensilesList.find(
-						(ustensileAlreadyCheck) =>
-						ustensileAlreadyCheck === ustensile
+						(ustensileAlreadyCheck) => ustensileAlreadyCheck === ustensile
 					);
 
 					if (found === undefined) {
