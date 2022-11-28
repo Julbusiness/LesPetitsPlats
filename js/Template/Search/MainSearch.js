@@ -630,4 +630,3 @@ function deleteTag(e) {
 		return result;
 	}
 }
-
