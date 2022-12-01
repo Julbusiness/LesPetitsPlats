@@ -77,7 +77,7 @@ async function getIngredients(currentRecipesArr, tags) {
 
 	// console.log(arrayCleaned);
 	// console.log(tags);
-for (let tag of tags) {
+for (let tag in tags) {
 
 	if (tag.name !== undefined) {
 		console.log(tag.name);
@@ -249,104 +249,26 @@ async function filterRecipes(e) {
 		);
 		/* -------------------------------------------------------------------------- */
 		// Dans ce cas si il y a des resultats, j'applique mon filtre et je crée les cartes qui correpondent
-		// console.log(filteredArr.length);
 		if (filteredArr.length !== 0) {
-			// console.log("je passe de le if")
-			// getRecipesFiltered(filteredArr);
 			getRecipes();
 			createRecipeList(filteredArr);
 			getIngredients(filteredArr);
 			getAppareils(filteredArr);
 			getUstensiles(filteredArr);
-			// filterIngredients;
 		} else {
-			// console.log("aucune recette n'est trouvée")
 			const error = document.createElement("p");
 			error.classList.add("error");
 			error.innerHTML = `Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc.`;
 			searchResult.appendChild(error);
 		}
 
-		/* -------------------------------------------------------------------------- */
-		/* -------------------------------------------------------------------------- */
-
-		let tags2 = document.querySelectorAll(".tags-item-appareils");
-
-		tags2.forEach((li) =>
-			li.addEventListener("click", () => {
-				const tag = li.innerHTML;
-				const color = "success";
-				const liItem = li;
-				createTag(tag, color, liItem);
-			})
-		);
-		tags2.forEach((li) =>
-			li.addEventListener("click", toggleDropDownAppareils())
-		);
-		/* -------------------------------------------------------------------------- */
-		let tags3 = document.querySelectorAll(".tags-item-ustensiles");
-		tags3.forEach((li) =>
-			li.addEventListener("click", toggleDropDownUstensiles())
-		);
-		tags3.forEach((li) =>
-			li.addEventListener("click", () => {
-				let tag = li.innerHTML;
-				const color = "danger";
-				const liItem = li;
-				createTag(tag, color, liItem);
-			})
-		);
-		/* -------------------------------------------------------------------------- */
 	} else {
 		// sinon je réapplique les cartes de bases
+		getRecipes();
 		createRecipeList(recipes);
 		getIngredients(recipes);
 		getAppareils(recipes);
 		getUstensiles(recipes);
-
-		let tags = document.querySelectorAll(".tags-item-ingredients");
-
-		// je met mon listener sur le click du bouton ingredients
-		tags.forEach((li) =>
-			li.addEventListener("click", () => {
-				toggleDropDownIngredients();
-			})
-		);
-
-		tags.forEach((li) =>
-			li.addEventListener("click", () => {
-				const tag = li.innerHTML;
-				const color = "primary";
-				const liItem = li;
-				createTag(tag, color, liItem);
-			})
-		);
-
-		let tags2 = document.querySelectorAll(".tags-item-appareils");
-		tags2.forEach((li) =>
-			li.addEventListener("click", toggleDropDownAppareils())
-		);
-		tags2.forEach((li) =>
-			li.addEventListener("click", () => {
-				const tag = li.innerHTML;
-				const color = "success";
-				const liItem = li;
-				createTag(tag, color, liItem);
-			})
-		);
-
-		let tags3 = document.querySelectorAll(".tags-item-ustensiles");
-		tags3.forEach((li) =>
-			li.addEventListener("click", toggleDropDownUstensiles())
-		);
-		tags3.forEach((li) =>
-			li.addEventListener("click", () => {
-				let tag = li.innerHTML;
-				const color = "danger";
-				const liItem = li;
-				createTag(tag, color, liItem);
-			})
-		);
 	}
 }
 

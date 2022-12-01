@@ -136,7 +136,6 @@ function toggleDropDownUstensiles() {
 		shortTitleIngredients.style.opacity = "100%";
 		shortTitleIngredients.classList.remove("open");
 		dropBtnIngredients.classList.remove("open-svg");
-		toggleIndexIngredients = false;
 
 		blocLinksAppareils.style.height = 0;
 		dropdownAppareils.style.width = "170px";
@@ -176,8 +175,6 @@ function createTag(tag, color, liItem) {
 
 
 	imgClose.addEventListener("click", deleteTag);
-
-	// liItem.style.display = "none";
 
 	tagsWrapper.appendChild(tagLi);
 	tagLi.appendChild(imgClose);

@@ -48,16 +48,6 @@ class App {
 			const Template = new Appareils(appareils);
 			this.$appareilsWrapper.appendChild(Template.createAppareils());
 		});
-
-		let tags = document.querySelectorAll(".tags-item-appareils");
-		tags.forEach((li) =>
-			li.addEventListener("click", () => {
-				toggleDropDownAppareils();
-				const tag = li.innerHTML;
-				const color = "success";
-				const liItem = li;
-			})
-		);
 	}
 	/* -------------------------------------------------------------------------- */
 	/* ---------- fetch des données recettes pour la création du tag Ustensiles --------- */
@@ -70,16 +60,6 @@ class App {
 			const Template = new Ustensiles(ustensiles);
 			this.$ustensilesWrapper.appendChild(Template.createUstensiles());
 		});
-
-		let tags = document.querySelectorAll(".tags-item-ustensiles");
-		tags.forEach((li) =>
-			li.addEventListener("click", () => {
-				toggleDropDownUstensiles();
-				const tag = li.innerHTML;
-				const color = "danger";
-				const liItem = li;
-			})
-		);
 	}
 	/* -------------------------------------------------------------------------- */
 	/* -------------------------- recherche principale -------------------------- */
