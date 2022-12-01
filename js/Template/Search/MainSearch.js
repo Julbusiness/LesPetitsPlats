@@ -8,6 +8,7 @@ const searchResult = document.querySelector(".cards");
 let recipes;
 let tags = [];
 let currentRecipesArr = [];
+let filteredArr = [];
 
 // je déclenche un nouveau fetch des données
 async function getRecipes() {
@@ -49,8 +50,7 @@ async function getIngredients(currentRecipesArr, tags) {
 	currentRecipesArr.forEach((recipe) => {
 		recipe.ingredients.forEach((ingredient) => {
 			const found = ingredientsList.find(
-				(ingredientCheck) =>
-					ingredientCheck === ingredient.ingredient
+				(ingredientCheck) => ingredientCheck === ingredient.ingredient
 			);
 
 			if (found === undefined) {
@@ -77,39 +77,38 @@ async function getIngredients(currentRecipesArr, tags) {
 
 	// console.log(arrayCleaned);
 	// console.log(tags);
-for (let tag in tags) {
-
-	if (tag.name !== undefined) {
-		console.log(tag.name);
-		console.log(arrayCleaned);
-		let common = arrayCleaned.filter(function (e) {
-			console.log(e.toLowerCase())
-			return !tag.name.includes(e.toLowerCase());
-		});
-		console.log(common);
-		if (common) {
-			ulTagsIngredients.innerHTML = "";
-			ingredientsList = common;
-			// console.log(ingredientsList);
-
-			ingredientsList.forEach((ingredient) => {
-				const currentIngredients = new Ingredients(ingredient);
-				// console.log(currentIngredients);
-				ulTagsIngredients.appendChild(currentIngredients.createIngredients());
+	for (let tag in tags) {
+		if (tag.name !== undefined) {
+			console.log(tag.name);
+			console.log(arrayCleaned);
+			let common = arrayCleaned.filter(function (e) {
+				console.log(e.toLowerCase());
+				return !tag.name.includes(e.toLowerCase());
 			});
-		} else {
-			let secondFilter = arrayCleaned.filter(function (e) {
-				return tags.indexOf(e) == -1;
-			});
+			console.log(common);
+			if (common) {
+				ulTagsIngredients.innerHTML = "";
+				ingredientsList = common;
+				// console.log(ingredientsList);
 
-			secondFilter.forEach((ingredient) => {
-				const currentIngredients = new Ingredients(ingredient);
-				// console.log(currentIngredients);
-				ulTagsIngredients.appendChild(currentIngredients.createIngredients());
-			});
+				ingredientsList.forEach((ingredient) => {
+					const currentIngredients = new Ingredients(ingredient);
+					// console.log(currentIngredients);
+					ulTagsIngredients.appendChild(currentIngredients.createIngredients());
+				});
+			} else {
+				let secondFilter = arrayCleaned.filter(function (e) {
+					return tags.indexOf(e) == -1;
+				});
+
+				secondFilter.forEach((ingredient) => {
+					const currentIngredients = new Ingredients(ingredient);
+					// console.log(currentIngredients);
+					ulTagsIngredients.appendChild(currentIngredients.createIngredients());
+				});
+			}
 		}
 	}
-}
 }
 
 async function getAppareils(currentRecipesArr, tags) {
@@ -239,7 +238,7 @@ async function filterRecipes(e) {
 		searchResult.innerHTML = "";
 
 		// j'applique la recherche : au titre de la recette, à la description et aux ingrédients
-		const filteredArr = recipes.filter(
+		filteredArr = recipes.filter(
 			(el) =>
 				el.name.toLowerCase().includes(searchedString) ||
 				el.description.toLowerCase().includes(searchedString) ||
@@ -261,7 +260,6 @@ async function filterRecipes(e) {
 			error.innerHTML = `Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc.`;
 			searchResult.appendChild(error);
 		}
-
 	} else {
 		// sinon je réapplique les cartes de bases
 		getRecipes();
@@ -476,13 +474,25 @@ function filterUstensilesByClick(tag, color, liItem) {
 function filterCurrentTags(tags) {
 	console.log("je passe dans filterCurrentTags");
 
-	currentRecipesArr = recipes.filter((recipe) => recipesValidate(recipe));
+	if (filteredArr.length !== 0) {
+		console.log("l'input est filtré");
+		currentRecipesArr = filteredArr.filter((recipe) => recipesValidate(recipe));
 
-	getRecipes();
-	createRecipeList(currentRecipesArr);
-	getIngredients(currentRecipesArr, tags);
-	getAppareils(currentRecipesArr, tags);
-	getUstensiles(currentRecipesArr, tags);
+		getRecipes();
+		createRecipeList(currentRecipesArr);
+		getIngredients(currentRecipesArr, tags);
+		getAppareils(currentRecipesArr, tags);
+		getUstensiles(currentRecipesArr, tags);
+	} else {
+		console.log("l'input n'est pas filtré'");
+		currentRecipesArr = recipes.filter((recipe) => recipesValidate(recipe));
+
+		getRecipes();
+		createRecipeList(currentRecipesArr);
+		getIngredients(currentRecipesArr, tags);
+		getAppareils(currentRecipesArr, tags);
+		getUstensiles(currentRecipesArr, tags);
+	}
 }
 
 function recipesValidate(recipe) {
