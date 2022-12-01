@@ -75,37 +75,39 @@ async function getIngredients(currentRecipesArr, tags) {
 	// filtre les elements du tableau arrayCleaned pour vérifier si il corresponde a un element du tableau tags, dans le but de le faire disparaitre de la liste si il existe
 
 	// console.log(arrayCleaned);
-	// console.log(tags);
-for (let tag of tags) {
+if (tags !== undefined) {
 
-	if (tag.name !== undefined) {
-		console.log(tag.name);
-		console.log(arrayCleaned);
-		let common = arrayCleaned.filter(function (e) {
-			console.log(e.toLowerCase())
-			return !tag.name.includes(e.toLowerCase());
-		});
-		console.log(common);
-		if (common) {
-			ulTagsIngredients.innerHTML = "";
-			ingredientsList = common;
-			// console.log(ingredientsList);
-
-			ingredientsList.forEach((ingredient) => {
-				const currentIngredients = new Ingredients(ingredient);
-				// console.log(currentIngredients);
-				ulTagsIngredients.appendChild(currentIngredients.createIngredients());
+	for (let tag of tags) {
+	
+		if (tag.name !== undefined) {
+			console.log(tag.name);
+			console.log(arrayCleaned);
+			let common = arrayCleaned.filter(function (e) {
+				console.log(e.toLowerCase())
+				return !tag.name.includes(e.toLowerCase());
 			});
-		} else {
-			let secondFilter = arrayCleaned.filter(function (e) {
-				return tags.indexOf(e) == -1;
-			});
-
-			secondFilter.forEach((ingredient) => {
-				const currentIngredients = new Ingredients(ingredient);
-				// console.log(currentIngredients);
-				ulTagsIngredients.appendChild(currentIngredients.createIngredients());
-			});
+			console.log(common);
+			if (common) {
+				ulTagsIngredients.innerHTML = "";
+				ingredientsList = common;
+				// console.log(ingredientsList);
+	
+				ingredientsList.forEach((ingredient) => {
+					const currentIngredients = new Ingredients(ingredient);
+					// console.log(currentIngredients);
+					ulTagsIngredients.appendChild(currentIngredients.createIngredients());
+				});
+			} else {
+				let secondFilter = arrayCleaned.filter(function (e) {
+					return tags.indexOf(e) == -1;
+				});
+	
+				secondFilter.forEach((ingredient) => {
+					const currentIngredients = new Ingredients(ingredient);
+					// console.log(currentIngredients);
+					ulTagsIngredients.appendChild(currentIngredients.createIngredients());
+				});
+			}
 		}
 	}
 }
@@ -479,13 +481,24 @@ function filterUstensilesByClick(tag, color, liItem) {
 function filterCurrentTags(tags) {
 	console.log("je passe dans filterCurrentTags");
 
-	RecipesArr = recipes.filter((recipe) => recipesValidate(recipe));
+	if (currentRecipesArr.length !== 0){
+		RecipesArr = currentRecipesArr.filter((recipe) => recipesValidate(recipe));
+	
+		getRecipes();
+		createRecipeList(RecipesArr);
+		getIngredients(RecipesArr, tags);
+		getAppareils(RecipesArr, tags);
+		getUstensiles(RecipesArr, tags);
+	} else {
+		RecipesArr = recipes.filter((recipe) => recipesValidate(recipe));
+	
+		getRecipes();
+		createRecipeList(RecipesArr);
+		getIngredients(RecipesArr, tags);
+		getAppareils(RecipesArr, tags);
+		getUstensiles(RecipesArr, tags);
+	}
 
-	getRecipes();
-	createRecipeList(RecipesArr);
-	getIngredients(RecipesArr, tags);
-	getAppareils(RecipesArr, tags);
-	getUstensiles(RecipesArr, tags);
 }
 
 function recipesValidate(recipe) {
