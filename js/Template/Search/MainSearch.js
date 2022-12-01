@@ -32,8 +32,6 @@ function createRecipeList(RecipeList) {
 		const Template = new Card(recipe);
 		searchResult.appendChild(Template.createRecipeCard());
 	});
-	// console.log(RecipeList);
-	// console.log(searchResult);
 }
 
 // je selectionne l'ul des tags et je vide le contenu
@@ -233,7 +231,6 @@ async function getUstensiles(currentRecipesArr, tags) {
 function filterRecipes(e){
 	console.log('je suis dans filterRecipes')
 	const searchedString = e.target.value
-	// console.log(searchedString)
 
 	if (searchedString.length > 2) {
 		currentRecipesArr = []
@@ -269,95 +266,12 @@ function filterRecipes(e){
 
 		let tags2 = document.querySelectorAll(".tags-item-appareils");
 
-		for (let j = 0; j < tags2.length; j++) {
-			tags2[j].addEventListener("click", () => {
-				const tag = tags2[j].innerHTML;
-				const color = "success";
-				const liItem = tags2[j];
-				createTag(tag, color, liItem);
-			})
-			
-		}
-
-		for (let k = 0; k < tags2.length; k++) {
-			tags2[k].addEventListener("click", toggleDropDownAppareils())
-		}
-
-		/* -------------------------------------------------------------------------- */
-		let tags3 = document.querySelectorAll(".tags-item-ustensiles");
-
-		for (let l = 0; l < tags3.length; l++) {
-			tags3[l].addEventListener("click", () => {
-				const tag = tags3[l].innerHTML;
-				const color = "success";
-				const liItem = tags3[l];
-				createTag(tag, color, liItem);
-			})
-			
-		}
-
-		for (let m = 0; m < tags3.length; m++) {
-			tags3[m].addEventListener("click", toggleDropDownAppareils())
-		}
-		/* -------------------------------------------------------------------------- */
 	} else {
 		// sinon je réapplique les cartes de bases
 		createRecipeList(recipes);
 		getIngredients(recipes);
 		getAppareils(recipes);
-		getUstensiles(recipes);
-
-		let tags = document.querySelectorAll(".tags-item-ingredients");
-
-		// je met mon listener sur le click du bouton ingredients
-		for (let n = 0; n < tags.length; n++) {
-			tags[n].addEventListener("click", () => {
-				toggleDropDownIngredients();
-			})
-		}
-
-		for (let o = 0; o < tags.length; o++) {
-			tags[o].addEventListener("click", () => {
-				const tag = tags[o].innerHTML;
-				const color = "primary";
-				const liItem = tags[o];
-				createTag(tag, color, liItem);
-			})
-		}
-
-		let tags2 = document.querySelectorAll(".tags-item-appareils");
-
-		for (let p = 0; p < tags2.length; p++) {
-			tags2[p].addEventListener("click", () => {
-				const tag = tags2[p].innerHTML;
-				const color = "success";
-				const liItem = tags2[p];
-				createTag(tag, color, liItem);
-			})
-			
-		}
-
-		for (let q = 0; q < tags2.length; q++) {
-			tags2[q].addEventListener("click", toggleDropDownAppareils())
-		}
-
-		/* -------------------------------------------------------------------------- */
-		let tags3 = document.querySelectorAll(".tags-item-ustensiles");
-
-		for (let r = 0; r < tags3.length; r++) {
-			tags3[r].addEventListener("click", () => {
-				const tag = tags3[r].innerHTML;
-				const color = "success";
-				const liItem = tags3[r];
-				createTag(tag, color, liItem);
-			})
-			
-		}
-
-		for (let s = 0; s < tags3.length; s++) {
-			tags3[s].addEventListener("click", toggleDropDownAppareils())
-		}
-	
+		getUstensiles(recipes);	
 }
 }
 
