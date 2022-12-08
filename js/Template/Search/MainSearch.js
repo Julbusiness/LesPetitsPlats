@@ -9,6 +9,7 @@ let recipes;
 let tags = [];
 let currentRecipesArr = [];
 let filteredArr = [];
+let ingredientsList = [];
 
 // je déclenche un nouveau fetch des données
 async function getRecipes() {
@@ -44,14 +45,16 @@ const ulTagsUstensiles = document.querySelector(".tags3");
 // j'applique le filtre sur les ingredients
 async function getIngredients(currentRecipesArr, tags) {
 	console.log("je suis dans getIngredients");
-	// console.log(currentRecipesArr)
-	let ingredientsList = [];
 
 	currentRecipesArr.forEach((recipe) => {
 		recipe.ingredients.forEach((ingredient) => {
+			// console.log(ingredientsList)
+			// console.log(ingredient.ingredient)
 			const found = ingredientsList.find(
-				(ingredientCheck) => ingredientCheck === ingredient.ingredient
+				(ingredientCheck) => ingredientCheck.toLowerCase() === ingredient.ingredient.toLowerCase()
 			);
+
+			// console.log(found)
 
 			if (found === undefined) {
 				ulTagsIngredients.innerHTML = "";
@@ -75,14 +78,14 @@ async function getIngredients(currentRecipesArr, tags) {
 
 	// filtre les elements du tableau arrayCleaned pour vérifier si il corresponde a un element du tableau tags, dans le but de le faire disparaitre de la liste si il existe
 
-	// console.log(arrayCleaned);
-	// console.log(tags);
-	for (let tag in tags) {
+	tags.forEach(function (tag) {
 		if (tag.name !== undefined) {
-			console.log(tag.name);
-			console.log(arrayCleaned);
 			let common = arrayCleaned.filter(function (e) {
-				console.log(e.toLowerCase());
+				// console.log(arrayCleaned);
+				// console.log(tags)
+				// console.log(tag.name);
+				// console.log(e.toLowerCase());
+				// console.log(!tag.name.includes(e.toLowerCase()))
 				return !tag.name.includes(e.toLowerCase());
 			});
 			console.log(common);
@@ -96,6 +99,7 @@ async function getIngredients(currentRecipesArr, tags) {
 					// console.log(currentIngredients);
 					ulTagsIngredients.appendChild(currentIngredients.createIngredients());
 				});
+				
 			} else {
 				let secondFilter = arrayCleaned.filter(function (e) {
 					return tags.indexOf(e) == -1;
@@ -108,7 +112,7 @@ async function getIngredients(currentRecipesArr, tags) {
 				});
 			}
 		}
-	}
+	});
 }
 
 async function getAppareils(currentRecipesArr, tags) {
