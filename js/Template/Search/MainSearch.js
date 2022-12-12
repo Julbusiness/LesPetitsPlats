@@ -25,7 +25,6 @@ getRecipes();
 
 // je crée la structure de ma nouvelle carte
 function createRecipeList(RecipeList) {
-
 	searchResult.innerHTML = "";
 
 	RecipeList.map((recipe) => new Recipe(recipe)).forEach((recipe) => {
@@ -60,9 +59,11 @@ async function getIngredients(currentRecipesArr, tags) {
 	const arrayTags = [];
 
 	// je met a l'interieur le nom de mes tags
-	tags.forEach((tag) => {
-		arrayTags.push(tag.name);
-	});
+	if (tags !== undefined) {
+		tags.forEach((tag) => {
+			arrayTags.push(tag.name);
+		});
+	}
 
 	// je trie mon arrayTags par ordre alphabetique
 	arrayTags.sort();
@@ -97,9 +98,11 @@ async function getAppareils(currentRecipesArr, tags) {
 	const arrayTags = [];
 
 	// je met a l'interieur le nom de mes tags
-	tags.forEach((tag) => {
-		arrayTags.push(tag.name);
-	});
+	if (tags !== undefined) {
+		tags.forEach((tag) => {
+			arrayTags.push(tag.name);
+		});
+	}
 
 	// je trie mon arrayTags par ordre alphabetique
 	arrayTags.sort();
@@ -116,7 +119,6 @@ async function getAppareils(currentRecipesArr, tags) {
 }
 
 async function getUstensiles(currentRecipesArr, tags) {
-	
 	ustensilesList = [];
 
 	currentRecipesArr.forEach((recipe) => {
@@ -136,9 +138,11 @@ async function getUstensiles(currentRecipesArr, tags) {
 	const arrayTags = [];
 
 	// je met a l'interieur le nom de mes tags
-	tags.forEach((tag) => {
-		arrayTags.push(tag.name);
-	});
+	if (tags !== undefined) {
+		tags.forEach((tag) => {
+			arrayTags.push(tag.name);
+		});
+	}
 
 	// je trie mon arrayTags par ordre alphabetique
 	arrayTags.sort();
@@ -171,7 +175,7 @@ async function filterRecipes(e) {
 					ingredient.ingredient.toLowerCase().includes(searchedString);
 				})
 		);
-		/* -------------------------------------------------------------------------- */
+
 		// Dans ce cas si il y a des resultats, j'applique mon filtre et je crée les cartes qui correpondent
 		if (filteredArr.length !== 0) {
 			getRecipes();
@@ -203,7 +207,6 @@ const searchResultIngredients = document.querySelector(".tags");
 
 // je crée ma fonction de filtres des ingredients par remplissage de l'input
 function filterIngredientsByInput(e) {
-
 	const searchedIngredients = e.target.value.toLowerCase();
 
 	if (searchedIngredients.length >= 0) {
@@ -248,7 +251,6 @@ function filterIngredientsByInput(e) {
 
 // je crée ma fonction de filtres des ingredients par click de tags
 function filterIngredientsByClick(tag, color, liItem) {
-	
 	searchResult.innerHTML = "";
 
 	tags.push({ name: tag, type: "ingredient" });
@@ -264,7 +266,6 @@ const searchResultAppareils = document.querySelector(".tags2");
 
 // je crée ma fonction de filtres des ingredients par remplissage de l'input
 function filterAppareilsByInput(e) {
-
 	const searchedAppareils = e.target.value;
 
 	if (searchedAppareils.length >= 0) {
@@ -305,7 +306,6 @@ function filterAppareilsByInput(e) {
 
 // je crée ma fonction de filtres des ingredients par click de tags
 function filterAppareilsByClick(tag, color, liItem) {
-
 	searchResult.innerHTML = "";
 
 	tags.push({ name: tag, type: "appareil" });
@@ -321,7 +321,6 @@ const searchResultUstensiles = document.querySelector(".tags3");
 
 // je crée ma fonction de filtres des ingredients par remplissage de l'input
 function filterUstensilesByInput(e) {
-
 	const searchedUstensiles = e.target.value;
 
 	if (searchedUstensiles.length >= 0) {
@@ -376,7 +375,6 @@ function filterUstensilesByClick(tag, color, liItem) {
 /* --------------------------- fonctions communes --------------------------- */
 /* -------------------------------------------------------------------------- */
 function filterCurrentTags(tags) {
-
 	if (filteredArr.length !== 0) {
 		currentRecipesArr = filteredArr.filter((recipe) => recipesValidate(recipe));
 
@@ -397,7 +395,6 @@ function filterCurrentTags(tags) {
 }
 
 function recipesValidate(recipe) {
-
 	const ingredients = recipe.ingredients;
 	const appareils = recipe.appliance.split();
 	const ustensiles = recipe.ustensils;
