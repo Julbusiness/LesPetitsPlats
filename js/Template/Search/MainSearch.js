@@ -52,9 +52,6 @@ async function getIngredients(currentRecipesArr, tags) {
 	// enleve les doublons
 	const arrayCleaned = [...new Set(ingredientsList)];
 
-	// trie par ordre alphabetiques
-	// arrayCleaned.sort();
-
 	// je crée mon arrayTags vide
 	const arrayTags = [];
 
@@ -64,9 +61,6 @@ async function getIngredients(currentRecipesArr, tags) {
 			arrayTags.push(tag.name);
 		});
 	}
-
-	// je trie mon arrayTags par ordre alphabetique
-	// arrayTags.sort();
 
 	// je filtre mes deux arrays pour trouver les elements qui ne sont pas communs
 	let difference = arrayCleaned.filter((x) => !arrayTags.includes(x));
