@@ -160,7 +160,6 @@ function toggleDropDownUstensiles() {
 // je crée le li de tags dynamiquement
 function createTag(tag, color, liItem) {
 	let tagsWrapper = document.querySelector(".tags-card-ul");
-	console.log("je passe dans createTag");
 
 	let tagLi = document.createElement("li");
 	tagLi.classList.add("btn");
