@@ -122,7 +122,7 @@ function toggleDropDownUstensiles() {
 		blocLinksUstensiles.style.height = "390px";
 		dropdownUstensiles.style.width = "100%";
 		shortTitleUstensiles.setAttribute("placeholder", "Rechercher un ustensile");
-		
+
 		shortTitleUstensiles.style.opacity = "50%";
 		shortTitleUstensiles.classList.add("open3");
 		dropBtnUstensiles.classList.add("open-svg");
@@ -161,7 +161,6 @@ function toggleDropDownUstensiles() {
 // je crée le li de tags dynamiquement
 function createTag(tag, color, liItem) {
 	let tagsWrapper = document.querySelector(".tags-card-ul");
-	console.log("je passe dans createTag");
 
 	let tagLi = document.createElement("li");
 	tagLi.classList.add("btn");
@@ -169,11 +168,9 @@ function createTag(tag, color, liItem) {
 	tagLi.classList.add("notif");
 	tagLi.innerHTML = tag;
 
-
 	let imgClose = document.createElement("img");
 	imgClose.src = "../../../Assets/close.png";
 	imgClose.classList.add("close");
-
 
 	imgClose.addEventListener("click", deleteTag);
 

@@ -41,8 +41,7 @@ const ulTagsUstensiles = document.querySelector(".tags3");
 // j'applique le filtre sur les ingredients
 async function getIngredients(currentRecipesArr, tags) {
 	ingredientsList = [];
-	console.log(currentRecipesArr);
-	console.log(tags);
+
 	currentRecipesArr.forEach((recipe) => {
 		recipe.ingredients.forEach((ingredient) => {
 			ulTagsIngredients.innerHTML = "";

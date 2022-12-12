@@ -1,20 +1,17 @@
 class Card {
 	constructor(recipe) {
 		this._recipe = recipe;
-    // console.log(this._recipe);
+		// console.log(this._recipe);
 	}
 
 	/* -------------------------------------------------------------------------- */
 	/* --------------------- creation des cartes de recette --------------------- */
 	createRecipeCard() {
-    console.log('je suis de createRecipeCard')
-    const $wrapper = document.createElement("div");
-    $wrapper.classList.add("card");
+		const $wrapper = document.createElement("div");
+		$wrapper.classList.add("card");
 
 		const ingredients = this._recipe.ingredients;
-		// console.log(ingredients);
 
-    
 		const recipeCard = `
     
     <img src="../../Assets/img.png" class="card-img-top" alt="">
@@ -37,26 +34,27 @@ class Card {
     </div>
     
     `;
-    
+
 		/* -------------------------------------------------------------------------- */
 		$wrapper.innerHTML = recipeCard;
-		const ul = $wrapper.querySelector('.list-group');
+		const ul = $wrapper.querySelector(".list-group");
 
 		for (const ingredient of ingredients) {
-      
 			let newLi = document.createElement("li");
 			newLi.classList.add("list-group-item");
 
-      if (ingredient.hasOwnProperty("quantity") && ingredient.hasOwnProperty("unit")){
-        newLi.innerHTML = `<b>${ingredient.ingredient}:</b> ${ingredient.quantity}${ingredient.unit}`;  
-      } else if (ingredient.hasOwnProperty("quantity")){
-        newLi.innerHTML = `<b>${ingredient.ingredient}:</b> ${ingredient.quantity}`;
-      } else {
-        newLi.innerHTML = `<b>${ingredient.ingredient}</b>`;
-      }
+			if (
+				ingredient.hasOwnProperty("quantity") &&
+				ingredient.hasOwnProperty("unit")
+			) {
+				newLi.innerHTML = `<b>${ingredient.ingredient}:</b> ${ingredient.quantity}${ingredient.unit}`;
+			} else if (ingredient.hasOwnProperty("quantity")) {
+				newLi.innerHTML = `<b>${ingredient.ingredient}:</b> ${ingredient.quantity}`;
+			} else {
+				newLi.innerHTML = `<b>${ingredient.ingredient}</b>`;
+			}
 
-      ul.appendChild(newLi);
-
+			ul.appendChild(newLi);
 		}
 
 		return $wrapper;
