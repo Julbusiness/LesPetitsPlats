@@ -127,7 +127,6 @@ header {
 	height: 364px;
 	display: flex;
 	border: none;
-	/* margin: auto; */
 }
 
 .card-img-top {
@@ -155,7 +154,6 @@ header {
 	line-height: 22px;
 	margin-bottom: 10px;
 	max-width: 250px;
-	/* white-space: nowrap; */
 }
 
 .list-group {
@@ -212,8 +210,7 @@ header {
 	overflow: hidden;
 	position: relative;
 	font-size: 12px;
-	align-items: left;
-	/* resize: horizontal; */
+	align-items: start;
 }
 
 .text-truncate::after {
@@ -294,7 +291,7 @@ header {
 
 .open-svg {
 	width: 16px;
-	rotate: 180deg;
+	transform: rotate(180deg);
 }
 
 .blocLinks-ingredients,
@@ -302,7 +299,6 @@ header {
 .blocLinks-ustensiles {
 	padding: 0px;
 	transition: height 0.2s ease-in-out;
-	/* height: 0; */
 }
 
 .blocLinks-ingredients li,
@@ -348,7 +344,6 @@ header {
 .tags-card {
 	max-width: 1240px;
 	margin: 20px auto 0;
-	/* display: none; */
 }
 
 .tags-card-ul {
