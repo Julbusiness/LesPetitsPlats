@@ -159,6 +159,7 @@ function filterRecipes(e) {
 
 	if (searchedString.length > 2) {
 		searchResult.innerHTML = "";
+		filteredArr = []
 
 		for (let i = 0; i < recipes.length; i++) {
 			if (
